@@ -1,4 +1,5 @@
-app = "viadiscopellotickets"
+app = "viediscopello"
+primary_region = "cdg"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
@@ -39,7 +40,7 @@ script_checks = [ ]
   restart_limit = 0
   timeout = "2s"
 
-  [[services.http_checks]]
+[[services.http_checks]]
   grace_period = "5s"
   interval = "30s"
   method = "get"
@@ -48,3 +49,4 @@ script_checks = [ ]
   timeout = "2s"
   tls_skip_verify = false
   headers = { }
+ 

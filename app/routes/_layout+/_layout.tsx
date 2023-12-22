@@ -2,10 +2,12 @@ import type { LoaderFunctionArgs } from '@remix-run/node'
 import type { User } from '@prisma/client'
 
 import { redirect, json } from '@remix-run/node'
-import { useLoaderData, Outlet } from '@remix-run/react'
+// import { useLoaderData, Outlet } from '@remix-run/react'
+import { Outlet } from '@remix-run/react'
+
 import { authenticator } from '~/services/auth/config.server'
 
-import { Navigation } from '~/components/navigation'
+// import { Navigation } from '~/components/navigation'
 import { Footer } from '~/components/footer'
 
 type LoaderData = {
@@ -25,15 +27,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Layout() {
   // Check bellow info about why we are force casting <LoaderData>
   // https://github.com/remix-run/remix/issues/3931
-  const { user } = useLoaderData() as LoaderData
+  // const { user } = useLoaderData() as LoaderData
 
   return (
-    <div className="mx-auto flex h-screen max-w-7xl flex-col items-center px-6">
+    <div className="mx-auto flex bg-main bg-cover  min-h-screen w-full h-screen max-w-7xl flex-col items-center px-6">
       {/* Background. */}
-      <div className="blobs" />
+      <div />
 
       {/* Navigation. */}
-      <Navigation user={user} />
+      {/* <Navigation user={user} /> */}
 
       {/* Outlet. */}
       <Outlet />

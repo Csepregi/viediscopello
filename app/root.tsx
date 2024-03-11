@@ -8,7 +8,9 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 import { getSharedEnvs } from './utils/envs'
 import TailwindCSS from './root.css'
 
@@ -21,7 +23,8 @@ export function loader() {
 }
 
 export default function App() {
-  const { ENV } = useLoaderData<typeof loader>()
+   library.add(fas, faTwitter, faFontAwesome)
+   const { ENV } = useLoaderData<typeof loader>()
 
   return (
     <html lang="en">
@@ -29,11 +32,17 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400"
+        />
         <Links />
       </head>
       <body>
         <Outlet />
-        <ScrollRestoration />
+        <ScrollRestoration getKey={location => {
+          return location.pathname;
+        }}/>
         <Scripts />
 
         {/* Global Shared Envs. */}

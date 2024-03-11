@@ -17,11 +17,16 @@
     "validate": "npm run lint && npm run typecheck && npm run test:e2e:run"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@prisma/client": "^4.16.2",
     "@remix-run/node": "^2.2.0",
     "@remix-run/react": "^2.2.0",
     "@remix-run/serve": "^2.2.0",
     "autoprefixer": "^10.4.16",
+    "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "intl-parse-accept-language": "^1.0.0",
     "isbot": "^3.7.0",

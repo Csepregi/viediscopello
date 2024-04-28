@@ -1,8 +1,11 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
 import type { User } from '@prisma/client'
 import { redirect, json } from '@remix-run/node'
-import { Outlet } from '@remix-run/react'
+import { Outlet, useLoaderData } from '@remix-run/react'
 import { authenticator } from '~/services/auth/config.server'
+import Header from '~/components/header'
+import { Navigation } from '~/components/navigation'
+import Navbar from '~/components/navbar'
 
 type LoaderData = {
   user: User | null
@@ -24,10 +27,11 @@ export default function Layout() {
   // const { user } = useLoaderData() as LoaderData
 
   return (
-     <div className="bg-main bg-cover  min-h-screen w-full h-screen ">
+     <div className="min-h-screen w-full h-screen ">
       {/* Background. */}
       <div />
       {/* Navigation. */}
+      <Header/>
       {/* <Navigation user={user} /> */}
       {/* Outlet. */}
       <Outlet />

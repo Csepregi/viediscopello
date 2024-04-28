@@ -13,6 +13,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 import { getSharedEnvs } from './utils/envs'
 import TailwindCSS from './root.css'
+import Layout from './routes/_layout+/_layout'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: TailwindCSS }]
@@ -39,7 +40,9 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <Layout>
         <Outlet />
+        </Layout>
         <ScrollRestoration getKey={location => {
           return location.pathname;
         }}/>

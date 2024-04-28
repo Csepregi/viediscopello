@@ -8,6 +8,7 @@ export default {
       'celeste': '#A4D3C0',
       'brown': '#EBD4AD',
       'orange': '#E2A436',
+      'white': '#FFFFFF',
     },
     extend: {
       backgroundImage: {
@@ -17,6 +18,7 @@ export default {
         'whatWeDo3': "url('/scop3.jpg')",
         'whatWeDo4': "url('/marescopello1.jpg')",
         'scopLogo':  "url('/logoscopello.png')",
+        'wineTasting': "url('/borgo.jpeg')",
       },
       screens: {
         'sm': '640px',

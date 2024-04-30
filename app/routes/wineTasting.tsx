@@ -33,6 +33,49 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
         return () => clearTimeout(timer);
     });
 
+    const wineries = [
+      {
+        name: 'Di Legami',
+        description: 'Immersa nelle morbide colline dell’agro trapanese, Di Legami custodisce una tradizione di passione e dedizione per il vino. Con circa 100 ettari a contrada Berlinghieri, questa cantina celebra la natura e il suo legame con il territorio.',
+        logo: './legami.jpeg'
+      },
+      {
+        name: 'Maenza',
+        description: 'Direttamente dai vigneti di famiglia a Camporeale, Maenza è sinonimo di qualità e tipicità. La filosofia aziendale, che non ammette compromessi, garantisce che ogni bottiglia preservi l\'identità autentica delle uve locali.',
+        logo: './maenza.jpeg'
+      },
+      {
+        name: 'Liberamente Vini',
+        description: "Sulle pittoresche colline di Castellammare del Golfo, la famiglia di Liberamente Vini coltiva la vite con amore e dedizione generazionale. Ogni bottiglia riflette l'impegno e la passione di chi lavora la terra con cura quotidiana, offrendo un vino che racconta di sole, terra e tradizione familiare.",
+        logo: './liberamente.jpeg'
+      },
+      {
+        name: 'Magaddino',
+        description: 'Da generazioni, la famiglia Magaddino coltiva viti tra Segesta e il Castello di Inici, a Castellammare del Golfo. Con passione e dedizione, producono vini che celebrano ogni momento della giornata, raccontando una storia di famiglia e di amore per la viticoltura.',
+        logo: './magaddino.jpeg'
+      },
+      {
+        name: 'Mustazza',
+        description: "Forte di una tradizione che affonda le radici nelle colline dell’agro Ericino, Mustazza esprime nel suo vino l'amore, la passione e la forza di generazioni. Questa azienda vitivinicola continua a valorizzare le proprie uve con pratiche che rispettano la natura e la storia locale.",
+        logo: './mustazza.jpeg'
+      },
+      {
+        name: 'Candido',
+        description: "Situata vicino a Camporeale, Candido gestisce venti ettari di vigneti nel cuore dell'Agro di Camporeale e Monreale. Con un impegno verso la coltivazione biologica, questa famiglia produce varietà di vini rossi e bianchi, preservando l'autenticità dei profumi e dei sapori tradizionali siciliani.",
+        logo: './candido.jpeg',
+      },
+      {
+        name: 'Brugnano',
+        description: "I fratelli Brugnano portano avanti una tradizione vinicola familiare da cinquant'anni con una nuova visione contemporanea. Orgogliosi delle radici, coltivano vigne nel rispetto della natura, producendo vini autentici fedeli al territorio. Con passione e dedizione, comunicano la propria unicità mantenendo alti standard di qualità e innovazione.",
+        logo: './brugnano.jpeg',
+      },
+      {
+        name: 'Essensily',
+        description: "Francesco, viaggiatore del mondo con radici profonde nei vigneti e negli uliveti di famiglia, fonda Essensily. Un marchio che celebra l'essenza pura dei suoi vini e oli siciliani di alta qualità, unendo il gusto autentico della Sicilia con un tocco moderno e seducente.",
+        logo: './essensily.jpeg',
+      },
+  ];
+
 
     return (
         <div className="bg-white">
@@ -122,6 +165,24 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
             />
           </div>
         </div>
+        <div className="px-4 py-12 mx-auto max-w-7xl">
+                <h2 className="text-3xl font-bold text-center text-blue">Esplora le Cantine</h2>
+                <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {wineries.map((winery, index) => (
+                        <div key={index} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+                            <div className="flex-shrink-0">
+                                <img className="w-full aspect-[4/3] object-cover object-center" src={`${winery.logo}`} alt={winery.name} />
+                            </div>
+                            <div className="flex flex-col justify-between flex-1 p-6 bg-white">
+                                <div className="flex-1">
+                                    <p className="text-xl font-semibold text-blue">{winery.name}</p>
+                                    <p className="mt-3 text-base text-blue">{winery.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
       </div>
     </div>
         );

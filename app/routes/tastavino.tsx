@@ -65,9 +65,24 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
         logo: './candido.jpeg',
       },
       {
+        name: 'Brugnano',
+        description: "I fratelli Brugnano portano avanti una tradizione vinicola familiare da cinquant'anni con una nuova visione contemporanea. Orgogliosi delle radici, coltivano vigne nel rispetto della natura, producendo vini autentici fedeli al territorio. Con passione e dedizione, comunicano la propria unicità mantenendo alti standard di qualità e innovazione.",
+        logo: './brugnano.jpeg',
+      },
+      {
         name: 'Essensily',
         description: "Francesco, viaggiatore del mondo con radici profonde nei vigneti e negli uliveti di famiglia, fonda Essensily. Un marchio che celebra l'essenza pura dei suoi vini e oli siciliani di alta qualità, unendo il gusto autentico della Sicilia con un tocco moderno e seducente.",
         logo: './essensily.jpeg',
+      },
+      {
+        name: 'Pizzitola',
+        description: "La storia della famiglia fonda le sue radici in contrada Zuccari, nel territorio di Monreale. Da quattro generazioni si prendono cura dei loro vigneti, oggi guidati da Giuseppe, giovane enologo, hanno deciso di intraprendere un percorso di valorizzazione delle varietà autoctone siciliane con l’obiettivo di produrre dei vini di territorio.",
+        logo: './pizzitola.jpg',
+      },
+      {
+        name: 'Asta',
+        description: "L'azienda si trova in Sicilia nel territorio di Partinico, a soli 2 km dal mare, sorge su una collina da cui si ammira il Golfo di Castellammare, da San Vito Lo Capo a Punta Raisi. Producono vini naturali, totalmente artigianali, prodotti in modo sostenibile che limitano fortemente gli interventi dell’uomo nel processo di lavorazione.",
+        logo: './asta.jpeg',
       },
   ];
 

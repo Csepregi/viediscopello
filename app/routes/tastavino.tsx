@@ -1,3 +1,4 @@
+import { Link } from '@remix-run/react';
 import React, { useEffect, useState } from 'react';
 
 const Tastavino: React.FC = () => {
@@ -193,32 +194,40 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
                     ))}
                 </div>
             </div>
-  {/* <div className="container flex flex-wrap pt-4 pb-10 m-auto mt-6 md:mt-15 lg:px-12 xl:px-16">
-    <div className="w-full px-0 lg:px-4">
-      <h2 className="px-12 text-base font-bold text-center md:text-2xl text-blue">
-        Compri tuo biglietto
-      </h2>
-      <div className="flex flex-wrap items-center justify-center py-4 pt-0">
-        <div className="w-full p-4 md:w-1/2 lg:w-1/4">
-          <label className="flex flex-col rounded-lg shadow-lg relative cursor-pointer hover:shadow-2xl">
-            <div className="w-full px-4 py-8 rounded-t-lg bg-blue-500">
-              <p className="text-5xl font-bold text-center text-blue">
-                $12
-              </p>
-            </div>
-            <div
-              className="flex flex-col items-center justify-center w-full h-full py-6 rounded-b-lg bg-blue-700"
-            >
-              <Link to="/plans"><button className="w-5/6 py-2 mt-2 font-semibold text-center uppercase bg-blue border border-transparent rounded text-blue-500">
-                Compro
-              </button></Link>
-            </div>
-          </label>
-        </div>
+         
+           
+              {/* <div className="flex flex-wrap items-center justify-center py-4 pt-0">
+                <div className="w-full p-4 md:w-1/2 lg:w-1/4">
+                  <label className="flex flex-col rounded-lg shadow-lg relative cursor-pointer hover:shadow-2xl">
+                   
+                    <div
+                      className="flex flex-col items-center justify-center w-full h-full py-6 rounded-b-lg bg-blue-700"
+                    >
+                      <Link to="/tickets"><button className="w-5/6 py-2 mt-2 font-semibold text-center uppercase bg-blue border border-transparent rounded text-blue-500">
+                      Acquista il tuo biglietto online e salta la fila!
+                      </button></Link>
+                    </div>
+                  </label>
+                </div>
 
-      </div>
-    </div>
-  </div> */}
+              </div> */}
+              <div className="wrapper">
+              <Link to="/tickets">
+              <button type="button" className="text-white bg-blue font-medium rounded-lg text-sm px-1 py-2.5 text-left inline-flex items-left ml-2 mb-2">
+                {/* <svg className="mr-2 -ml-1 w-10 h-3" viewBox="0 0 256 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28.812 0L0 63.76H34.492L38.768 53.594H48.542L52.818 63.76H90.784V56.001L94.167 63.76H113.806L117.189 55.837V63.76H196.148L205.749 53.858L214.739 63.76L255.294 63.842L226.391 32.058L255.294 0H215.368L206.022 9.71899L197.315 0H111.418L104.042 16.457L96.493 0H62.073V7.495L58.244 0C58.244 0 28.812 0 28.812 0ZM35.486 9.05399H52.299L71.41 52.29V9.05399H89.828L104.589 40.054L118.193 9.05399H136.519V54.806H125.368L125.277 18.955L109.02 54.806H99.045L82.697 18.955V54.806H59.757L55.408 44.549H31.912L27.572 54.797H15.281C15.281 54.797 35.486 9.05399 35.486 9.05399ZM146.721 9.05399H192.063L205.931 24.034L220.246 9.05399H234.114L213.043 32.049L234.114 54.779H219.617L205.749 39.625L191.361 54.779H146.721V9.05399ZM43.665 16.795L35.924 35.067H51.397L43.665 16.795ZM157.918 18.527V26.879H182.654V36.188H157.918V45.306H185.663L198.555 31.876L186.21 18.519H157.918V18.527Z" fill="white"></path></svg> */}
+                {/* Acquista il tuo biglietto online e salta la fila! */}
+                </button>
+                </Link>
+              </div>
+
+              <form action="/logout" method="post">
+              <button type="submit" className="text-blue">----</button> 
+              </form>
+              
+
+           
+              {/* <button type="button" className="text-white bg-blue hover:bg-celeste focus:ring-4 focus:celeste font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-celeste mr-2 mb-2"> */}
+
       </div>
     </div>
         );

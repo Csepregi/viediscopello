@@ -19,6 +19,7 @@ export default {
         'whatWeDo4': "url('/marescopello1.jpg')",
         'scopLogo':  "url('/logoscopello.png')",
         'wineTasting': "url('/borgo.jpeg')",
+        'login': "url('/eventphoto.jpeg')",
       },
       screens: {
         'sm': '640px',

@@ -27,8 +27,15 @@ export default function Header () {
           </button>
             </div>
             <div className="hidden lg:block">
+           
             <a href="/tastavino" className="text-xl font-semibold text-blue hover:text-blue-800">Tastavino</a>
-          </div>
+            </div>
+            {/* <div>
+            <form action="/logout" method="post"><button type="submit" className="text-xl font-semibold text-blue hover:text-blue-800">Logout</button></form> 
+            </div>
+            <div>
+            <form action="/billing" method="post"><button type="submit" className="text-xl font-semibold text-blue hover:text-blue-800">Billing</button></form> 
+            </div> */}
           {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href="#" className="text-sm font-semibold leading-6 text-blue">Log in <span aria-hidden="true">&rarr;</span></a>
           </div> */}

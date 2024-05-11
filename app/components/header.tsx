@@ -35,7 +35,7 @@ export default function Header () {
             </div>
             <div>
             <form action="/billing" method="post"><button type="submit" className="text-xl font-semibold text-blue hover:text-blue-800">Billing</button></form> 
-            </div> */}
+            </div>  */}
           {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href="#" className="text-sm font-semibold leading-6 text-blue">Log in <span aria-hidden="true">&rarr;</span></a>
           </div> */}

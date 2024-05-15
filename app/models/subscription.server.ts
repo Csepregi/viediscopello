@@ -48,7 +48,7 @@ export async function createCheckoutSession(
         },
         custom_text: {
           terms_of_service_acceptance: {
-            message: 'Accetto i [Termini e Condizioni](http://https://viediscopello.fly.dev/terminiecondizioni)',
+            message: 'Accetto i [Termini e Condizioni](https://viediscopello.fly.dev/terminiecondizioni)',
           },
         },
           custom_fields: [

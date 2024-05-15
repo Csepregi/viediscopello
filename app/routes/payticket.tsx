@@ -39,14 +39,14 @@ export default function Payticket() {
           description="Il biglietto include:"
           buttonText="Acquista"
           logoUrl="./torre.png"
-          note="n.b. + 3 EURO come cauzione per il calice da versare in contanti al ingresso"
+          note="n.b. + 3 EURO come cauzione per il calice da versare in contanti all'ingresso"
           //coupon="zl7TRed0"
         >
-          <List>Degustazione di 4 calici di vino presso le cantine partecipanti</List>
+          <List>degustazione di 4 calici di vino presso le cantine partecipanti</List>
           <List>degustazioni gastronomiche presso gli stand presenti</List>
-          <List>Laboratorio di intreccio</List>
-          <List>Laboratori per bambini con inizio alle ore 18.00 o 19.00</List>
-          <List>Concerto musicale dalle ore 20.30</List>
+          <List>laboratorio di intreccio</List>
+          <List>laboratori per bambini con inizio alle ore 18.00 o 19.00</List>
+          <List>concerto musicale dalle ore 20.30</List>
         </PricingCard>
         <PricingCard
           type="Masterclass + Degustazione"

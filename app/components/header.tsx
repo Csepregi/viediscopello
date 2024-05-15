@@ -63,7 +63,7 @@ export default function Header() {
             </button>
             {dropdownOpen && (
               <div className="mt-2 space-y-1">
-                 <a href="#" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Login</a>
+                 <a href="/loginevent" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Login</a>
                 <Form action="/logout" method="post">
                   <button type="submit" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100 w-full text-left">Logout</button>
                 </Form>

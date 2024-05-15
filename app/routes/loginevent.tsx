@@ -60,85 +60,78 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export const meta: MetaFunction = () => [{ title: "Login" }];
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
-    const redirectTo = searchParams.get("redirectTo") || "/loginevent";
-    const actionData = useActionData<typeof action>();
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
+  const redirectTo = searchParams.get("redirectTo") || "/loginevent";
+  const actionData = useActionData<typeof action>();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  // Manage focus on input fields when there are errors
   useEffect(() => {
     if (actionData?.errors?.email) {
       emailRef.current?.focus();
     } else if (actionData?.errors?.password) {
       passwordRef.current?.focus();
     }
+    emailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [actionData]);
 
   return (
     <section className="min-h-screen flex flex-col lg:flex-row items-stretch">
-      {/* Introductory text container */}
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12 bg-white">
         <div className="max-w-md w-full space-y-4">
-          <div className="text-lg text-blue text-center font-medium px-4 py-2">
-            Per accedere alla nostra piattaforma di prenotazione dei biglietti, ti invitiamo a fornire il tuo indirizzo email e creare una password. Una volta completata la registrazione e aver proceduto con il pagamento riceverai il tuo biglietto direttamente nella tua casella di posta elettronica.
+          <div className="flex flex-col items-center space-y-2">
+            <img src="./logoscopello.png" alt="Le Vie di Scopello" style={{ width: '250px', height: '250px' }}/>
+            <h1 className="text-3xl text-center font-semibold text-blue">Le Vie di Scopello</h1>
           </div>
-          <Form method="post" className="space-y-6">
-            <h2 className="text-2xl font-bold text-center text-blue">Log In</h2>
-
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="email" className="sr-only">Indirizzo e-mail</label>
-                <input
-                  ref={emailRef}
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-blue text-blue rounded-t-md focus:outline-none focus:ring-blue focus:border-blue focus:z-10 sm:text-sm"
-                  placeholder="Indirizzo e-mail"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="password" className="sr-only">Password</label>
-                <input
-                  ref={passwordRef}
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-blue rounded-b-md focus:outline-none focus:ring-blue focus:border-blue focus:z-10 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
+          <p className="text-center text-blue">
+            Crea un account per prenotare i biglietti dei nostri eventi, pagare online e saltare la fila!
+          </p>
+          <Link to="/join" className="block text-center bg-celeste text-blue py-2 px-4 rounded hover:bg-green-600">
+            Registrati
+          </Link>
+          <p className="text-center text-blue">Se hai gia’ un account, accedi subito.</p>
+          <Form method="post" className="space-y-4">
+            <div>
+              <label htmlFor="email" className="sr-only">Indirizzo e-mail</label>
+              <input
+                ref={emailRef}
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-blue rounded-t-md focus:outline-none focus:ring-blue focus:border-blue focus:z-10 sm:text-sm"
+                placeholder="Indirizzo e-mail"
+              />
             </div>
-
+            <div>
+              <label htmlFor="password" className="sr-only">Password</label>
+              <input
+                ref={passwordRef}
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-blue rounded-b-md focus:outline-none focus:ring-blue focus:border-blue focus:z-10 sm:text-sm"
+                placeholder="Password"
+              />
+            </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <input id="remember_me" name="remember" type="checkbox" className="h-4 w-4 text-blue focus:ring-blue border-gray-300 rounded"/>
-                <label htmlFor="remember_me" className="ml-2 block text-sm text-blue"> Ricordami </label>
-              </div>
-              <div className="text-sm">
-                <Link to={{ pathname: "/join", search: searchParams.toString() }} className="font-medium text-blue hover:text-blue">
-                 Non hai ancora un account? Registrati
-                </Link>
+                <input id="remember_me" name="remember" type="checkbox" className="h-4 w-4 text-blue focus:ring-blue border-gray-300 rounded" />
+                <label htmlFor="remember_me" className="ml-2 block text-sm text-blue">Ricordami</label>
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue hover:bg-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
               >
-                  <input type="hidden" name="redirectTo" value={redirectTo} />
+                <input type="hidden" name="redirectTo" value={redirectTo} />
                 Log in
               </button>
             </div>
           </Form>
         </div>
       </div>
-
-      {/* Background image container, visible on all device sizes */}
       <div className="w-full h-64 lg:h-full lg:flex-1 order-first lg:order-none">
         <img
           src="./loginEvent.jpeg"

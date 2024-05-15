@@ -8,62 +8,64 @@ export const action: ActionFunction = async ({request}) => {
   const user = await requireUser(request)
   const formData = await request.formData();
   const price = formData.get('price');
-  const url = await createCheckoutSession(user, price)
+  const coupon = formData.get('coupon');
+  const url = await createCheckoutSession(user, price, coupon)
   return redirect(url)
 }
 
 
 export default function Payticket() {
   return (
-    <section className="relative z-10 overflow-hidden bg-white pb-12 pt-20 bg-white lg:pb-8 lg:pt-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <span className="mb-2 block text-lg font-semibold text-blue sm:text-xl md:text-2xl">
-            TASTAVINO I edizione
-          </span>
-        </div>
-
-        <div className="mt-6 flex flex-wrap justify-center">
-          <PricingCard
-            type="Masterclass"
-            price="€20"
-            priceValue="price_1PDvtmLsVEYbqPQOGmkZCOOM"
-            //description="1 ora di masterclass esclusiva (max 20 persone) condotta da un giornalista enogastronomico ed esperto di vini"
-            buttonText="Scegli Masterclass"
-          >
-            <List> 1 ora di masterclass esclusiva (max 20 persone) di approfondimento alla degustazioni di vini locali condotta da un giornalista enogastronomico ed esperto di vini.</List>
-          </PricingCard>
-          <PricingCard
-            type="degustazione"
-            price="€12"
-            priceValue="price_1PEx9FLsVEYbqPQOpR2AN5dg"
-            description="degustazione di 4 calici di vino presso le cantine partecipanti "
-            buttonText="Scegli degustazione"
-            active
-          >
-            <List>degustazione di 4 calici di vino presso le cantine partecipanti </List>
-              <List>degustazioni gastronomiche presso gli stand presenti </List>
-              <List>laboratorio di intreccio presso uno degli stand</List>
-              <List>laboratori per bambini con inizio alle ore 17.00/18.00/19.00</List>
-              <List>Use on 1 (one) project</List>
-              <List>concerto musicale dalle ore 20.30 e lezione di contradanza</List>
-          </PricingCard>
-          <PricingCard
-            type="Masterclass + degustazione "
-            price="€25"
-            priceValue='price_1PEHG7LsVEYbqPQOORRa8yK9'
-            description="1 ora di masterclass esclusiva (max 20 persone) condotta da un enologo. Un approfondimento alla degustazioni di vini locali abbinati a prodotti gastronomici del territorio "
-            buttonText="Scegli Masterclass + degustazione "
-          >
-            <List>degustazione di 4 calici di vino presso le cantine partecipanti </List>
-              <List>degustazioni gastronomiche presso gli stand presenti </List>
-              <List>laboratorio di intreccio presso uno degli stand</List>
-              <List>laboratori per bambini con inizio alle ore 17.00/18.00/19.00</List>
-              <List>concerto musicale dalle ore 20.30 e lezione di contradanza</List>
-          </PricingCard>
-        </div>
+    <section className="bg-white text-blue py-12">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-10">
+        <h1 className="text-2xl font-semibold">TASTAVINO I edizione</h1>
       </div>
-    </section>
+      <div className="flex flex-wrap justify-center">
+        <PricingCard
+          type="Masterclass"
+          price="€20"
+          priceValue="price_1PGStpLsVEYbqPQO2kdH8XhQ"
+          description="Il biglietto include:"
+          buttonText="Acquista"
+          logoUrl="./arco.png"
+        >
+          <List>1 ora di masterclass esclusiva (max 20 persone) di approfondimento alla degustazione di vini locali condotta da un giornalista enogastronomico ed esperto di vini</List>
+        </PricingCard>
+        <PricingCard
+          type="Degustazione"
+          price="€12"
+          priceValue="price_1PEx9FLsVEYbqPQOpR2AN5dg"
+          description="Il biglietto include:"
+          buttonText="Acquista"
+          logoUrl="./torre.png"
+          note="n.b. + 3 EURO come cauzione per il calice da versare in contanti al ingresso"
+          //coupon="zl7TRed0"
+        >
+          <List>Degustazione di 4 calici di vino presso le cantine partecipanti</List>
+          <List>degustazioni gastronomiche presso gli stand presenti</List>
+          <List>Laboratorio di intreccio</List>
+          <List>Laboratori per bambini con inizio alle ore 18.00 o 19.00</List>
+          <List>Concerto musicale dalle ore 20.30</List>
+        </PricingCard>
+        <PricingCard
+          type="Masterclass + Degustazione"
+          price="€25"
+          priceValue='price_1PGSS7LsVEYbqPQO7VupHptR'
+          description="Il biglietto include:"
+          buttonText="Acquista"
+          logoUrl="./baglio.png"
+        >
+          <List>1 ora di masterclass esclusiva</List>
+          <List>degustazione di 4 calici di vino presso le cantine partecipanti</List>
+          <List>degustazioni gastronomiche presso gli stand presenti</List>
+          <List>laboratorio di intreccio</List>
+          <List>laboratori per bambini con inizio alle ore 18.00 o 19.00</List>
+          <List>concerto musicale dalle ore 20.30</List>
+        </PricingCard>
+      </div>
+    </div>
+  </section>
   );
 };
 
@@ -75,6 +77,9 @@ interface PricingCardProps {
   type: string;
   buttonText: string;
   active?: boolean;
+  logoUrl: string;
+  note?: string;
+  coupon?: string;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -85,34 +90,33 @@ const PricingCard: React.FC<PricingCardProps> = ({
   type,
   buttonText,
   active,
+  logoUrl,
+  note,
+  coupon
 }) => {
   return (
     <div className="w-full px-4 mb-6 md:w-1/2 lg:w-1/3">
-      <div className="relative mb-10 overflow-hidden rounded-lg border-2 bg-blue px-8 py-10 shadow-pricing dark:border-dark-3 dark:bg-dark-2 sm:p-12">
-        <h3 className="mb-3 text-lg font-semibold text-white">{type}</h3>
-        <h2 className="mb-5 text-4xl font-bold text-white">
-          {price}
-        </h2>
-        <p className="mb-8 border-b border-stroke pb-8 text-base text-body-color">
-          {description}
-        </p>
-        <div className="mb-9 flex flex-col gap-2">{children}</div>
+      <div className="relative mb-10 overflow-hidden rounded-lg border bg-dark-blue px-6 py-8 shadow-lg transition duration-300 ease-in-out hover:scale-105">
+      <div className="absolute top-0 right-0 mt-4 mr-4">
+          <img src={logoUrl} alt="Logo" style={{ width: '60px', height: '60px' }} />
+        </div>
+        <h3 className="text-lg font-semibold text-teal-300">{type}</h3>
+        <h2 className="text-3xl font-bold text-blue my-3">{price}  {note && <span className="text-sm text-gray-400 block">{note}</span>}</h2>
+        <p className="text-gray-300 text-sm border-t border-gray-700 pt-4">{description}</p>
+        <div className="my-4">{children}</div>
         <form method="POST">
-               <input type='hidden' name='price' value={priceValue} />
-               <button
-              className={` ${
+          <input type='hidden' name='price' value={priceValue} />
+          {/* <input type='hidden' name='coupon' value={coupon} /> */}
+          <button
+            className={`w-full rounded-md py-3 text-sm font-medium ${
               active
-                ? "block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90"
-                : "block w-full rounded-md border border-stroke bg-transparent p-3 text-center text-base font-medium text-white transition hover:border-white hover:bg-brown hover:text-blue dark:border-dark-3"
-            } `}
-                    
-                   >
-                     {buttonText}
-           </button>
-               
-                     
-          </form>
-
+                ? "bg-teal-500 text-white hover:bg-teal-600"
+                : "border border-teal-500 text-teal-500 hover:bg-blue hover:text-white"
+            } transition duration-300 ease-in-out`}
+          >
+            {buttonText}
+          </button>
+        </form>
       </div>
     </div>
   );
@@ -120,6 +124,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
 const List = ({ children }) => {
   return (
-    <p className="text-base text-body-color dark:text-dark-6">{children}</p>
+    <p className="text-base text-gray-200 my-2">- {children}</p>
   );
 };

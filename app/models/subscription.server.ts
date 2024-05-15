@@ -6,12 +6,11 @@ import { updateSubscriptionByUserId } from "./subscription/update-subscription";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export async function createBillingSession(
-    user: User,
+    user: User
 ) : Promise<string | null> {
     const session = await stripe.billingPortal.sessions.create({
         customer: user.stripeCustomerId,
-        return_url: 'http://localhost:3000/tastavino'
-        
+        return_url: 'https://viediscopello.fly.dev/tastavino',
       });
     return session.url
 }
@@ -19,6 +18,7 @@ export async function createBillingSession(
 export async function createCheckoutSession(
     user: User,
     price: string,
+    coupon: string,
 ) : Promise<string | null> {
     const session = await stripe.checkout.sessions.create({
         line_items: [
@@ -37,8 +37,20 @@ export async function createCheckoutSession(
       },
         customer: user.stripeCustomerId,
         mode: 'payment',
-        success_url: 'http://localhost:3000',
-        cancel_url: 'http://localhost:3000/payticket',
+        // discounts: [{
+        //   coupon: 'zl7TRed0',
+        // }],
+        success_url: 'https://viediscopello.fly.dev/success',
+        cancel_url: 'https://viediscopello.fly.dev/payticket',
+        allow_promotion_codes: true,
+        consent_collection: {
+          terms_of_service: 'required',
+        },
+        custom_text: {
+          terms_of_service_acceptance: {
+            message: 'Accetto i [Termini e Condizioni](http://https://viediscopello.fly.dev/terminiecondizioni)',
+          },
+        },
           custom_fields: [
             {
               key: 'day',
@@ -50,25 +62,18 @@ export async function createCheckoutSession(
               dropdown: {
                 options: [
                   {
-                    label: 'Friday',
-                    value: 'Friday',
+                    label: 'Venerdi',
+                    value: 'Venerdi',
                   },
                   {
-                    label: 'Saturday',
-                    value: 'Saturday',
+                    label: 'Sabato',
+                    value: 'Sabato',
                   },
                 ],
               },
             },
-            {
-              key: 'time',
-              label: {
-                type: 'custom',
-                custom: 'scrivi il tempo: 18 o 19.30',
-              },
-              type: 'numeric',
-            }
           ],
+          locale: 'it',
       });
       
     return session.url
@@ -100,6 +105,19 @@ export async function handleSubcriptionCreated(
         }
     })
 }
+
+// export async function handleSubcriptionCreated(
+//   stripeCustomerId: User["stripeCustomerId"],
+//   customer: any
+// ) {
+//   await prisma.user.update({
+//       where: { id: customer.metadata.userId},
+//       data: {
+//           stripeSubscriptionId: customer.id,
+//           stripeSubscriptionStatus: customer.status
+//       }
+//   })
+// }
 
 export async function handleWebhook(request) {
     const secret = process.env.STRIPE_WEBHOOK_SECRET

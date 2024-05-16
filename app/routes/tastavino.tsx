@@ -120,8 +120,8 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
             <p className="text-lg font-semibold text-blue pb-5">Date e orari:</p>
             <p className="text-lg text-blue pb-2">- 31 maggio 2024 dalle 18 a mezzanotte</p>
             <p className="text-lg text-blue pb-7">- 1 giugno 2024 dalle 18 a mezzanotte</p>
-            <Link to="/tickets" className="bg-blue-500 text-white px-6 py-3 rounded-full text-xl font-semibold bg-blue transition-colors block text-center w-full md:w-auto md:inline-block">
-              Acquista il biglietto online e salta la fila
+            <Link to="/tickets" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
+              Acquista il tuo biglietto
             </Link>
         </div>
         <div className="py-10">

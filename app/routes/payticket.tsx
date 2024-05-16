@@ -31,7 +31,7 @@ export default function Payticket() {
           logoUrl="./arco.png"
           lastNote="Potrai scegliere il tuo giorno preferito nel successivo passaggio"
         >
-          <List>1 ora di masterclass esclusiva (max 20 persone) di approfondimento alla degustazione di vini locali condotta da un giornalista enogastronomico ed esperto di vini</List>
+          <List>1 ora di masterclass esclusiva alle ore 18.00 (max 20 persone) di approfondimento alla degustazione di vini locali condotta da un giornalista enogastronomico ed esperto di vini</List>
           <p className="text-sm text-gray-200 my-2"> &bull; Potrai scegliere il tuo giorno preferito nel successivo passaggio</p>
         </PricingCard>
         <PricingCard
@@ -60,7 +60,7 @@ export default function Payticket() {
           logoUrl="./baglio.png"
           lastNote="Potrai scegliere il tuo giorno preferito nel successivo passaggio"
         >
-          <List>1 ora di masterclass esclusiva</List>
+          <List>1 ora di masterclass esclusiva alle ore 18.00</List>
           <List>degustazione di 4 calici di vino presso le cantine partecipanti</List>
           <List>degustazioni gastronomiche presso gli stand presenti</List>
           <List>laboratorio di intreccio</List>

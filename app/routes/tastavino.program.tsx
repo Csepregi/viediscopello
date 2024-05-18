@@ -103,7 +103,7 @@ export default function Program() {
                       Durata: 1 ora circa 
                       </p>
                       <p className="text-sm italic md:text-base leading-snug text-gray-700">
-                      E’ necessaria la prenotazione
+                      E’ necessaria la prenotazione a questo <Link className="underline text-blue hover:text-celeste"  to="https://docs.google.com/forms/d/1SFm2utQUN8OaOWcNtbVXNjzsJ3xs89dpXrsdJ5nKHiw" target="_blank">link</Link>
                       </p>
                     </div>
                   </div>
@@ -119,10 +119,10 @@ export default function Program() {
                       Turni: 18.00-19.00 e 19.00-20.00
                       </p>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
-                      Età: 3-5 anni dai 6 anni in su
+                      Età: 3-5 anni e dai 6 anni in su
                       </p>
                       <p className="text-sm italic md:text-base leading-snug text-gray-700">
-                      E’ necessaria la prenotazione, a breve il link
+                      E’ necessaria la prenotazione a questo <Link className="underline text-blue hover:text-celeste"  to='https://docs.google.com/forms/d/1nGfFhKIlptBT-ilgjdo4nDjzrDy1Ckbo5RugH1BxjPE' target="_blank">link</Link>
                       </p>
                     </div>
                   </div>
@@ -136,7 +136,7 @@ export default function Program() {
                       Durata: 1 ora
                       </p>
                       <p className="text-sm italic md:text-base leading-snug text-gray-700">
-                      E’ necessaria la prenotazione e l'acquisto dei biglietti, a breve il link
+                      E’ necessaria la prenotazione e l'acquisto dei biglietti
                       </p>
                     </div>
                     <div className="mb-8 flex justify-between items-center w-full right-timeline">
@@ -174,7 +174,7 @@ export default function Program() {
                       Durata: 1 ora circa
                       </p>
                       <p className="text-sm italic md:text-base leading-snug text-gray-700">
-                      E’ necessaria prenotazione, a breve il link
+                      E’ necessaria la prenotazione a questo <Link className="underline text-blue hover:text-celeste"  to="https://docs.google.com/forms/d/1SFm2utQUN8OaOWcNtbVXNjzsJ3xs89dpXrsdJ5nKHiw" target="_blank">link</Link>
                       </p>
                     </div>
                   </div>
@@ -190,10 +190,10 @@ export default function Program() {
                       Turni: 18.00-19.00 e 19.00-20.00
                       </p>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
-                      Età: 3-5 anni dai 6 anni in su
+                      Età: 3-5 anni e dai 6 anni in su
                       </p>
                       <p className="text-sm italic md:text-base leading-snug text-gray-700">
-                      E’ necessaria la prenotazione, a breve il link
+                      E’ necessaria la prenotazione a questo <Link className="underline text-blue hover:text-celeste" to='https://docs.google.com/forms/d/1nGfFhKIlptBT-ilgjdo4nDjzrDy1Ckbo5RugH1BxjPE' target="_blank">link</Link>
                       </p>
                     </div>
                   </div>
@@ -207,7 +207,7 @@ export default function Program() {
                       Durata: 1 ora
                       </p>
                       <p className="text-sm italic md:text-base leading-snug text-gray-700">
-                      E’ necessaria la prenotazione e l'acquisto dei biglietti, a breve il link
+                      E’ necessaria la prenotazione e l'acquisto dei biglietti
                       </p>
                     </div>
                     <div className="mb-8 flex justify-between items-center w-full right-timeline">

@@ -8,12 +8,58 @@ export default function Success() {
             <img src="./eventphoto.jpeg" alt="TastaVino Logo" className="mb-2" />
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-blue mb-2">Pagamento Avvenuto con Successo</h2>
-          <p className="text-blue mb-4">Grazie per il tuo acquisto! La tua transazione è stata completata con successo.</p>
-          <a href="/" className="inline-block px-6 py-2 mt-4 text-sm font-medium leading-6 text-center text-blue bg-white hover:bg-blue hover:text-white  rounded-full shadow transition duration-200 ease-in-out">
-            Vai alla pagina principale
+          <h2 className="text-2xl font-bold text-blue mb-2">Grazie per il tuo acquisto!</h2>
+          <p className="text-blue mb-4">La tua transazione è stata completata con successo.</p>
+          <p className="text-blue mb-4">Mostra la mail ricevuta all’ingresso come prova di acquisto.</p>
+          <a href="/tastavino/program" className="inline-block px-6 py-2 mt-4 text-sm font-medium leading-6 text-center text-blue bg-white hover:bg-blue hover:text-white  rounded-full shadow transition duration-200 ease-in-out">
+          Torna al Programma
           </a>
         </div>
       </div>
     );
   }
+
+//   import { json, LoaderFunction } from "@remix-run/node";
+// import { useLoaderData } from "@remix-run/react";
+// import Stripe from "stripe";
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+// // Define the loader function to fetch session data
+// export const loader: LoaderFunction = async ({ request }) => {
+//   const url = new URL(request.url);
+//   const sessionId = url.searchParams.get("session_id");
+
+//   if (!sessionId) {
+//     throw new Error("Session ID is required");
+//   }
+
+//   try {
+//     const session = await stripe.checkout.sessions.retrieve(sessionId);
+//     return json({ session });
+//   } catch (error) {
+//     console.error("Error retrieving session:", error);
+//     throw new Response("Failed to retrieve session", { status: 500 });
+//   }
+// };
+
+// type LoaderData = {
+//   session: Stripe.Checkout.Session;
+// };
+
+
+// export default function Success() {
+//   const { session } = useLoaderData<LoaderData>();
+
+//   return (
+//     <div>
+//       <h1>Payment Success</h1>
+//       <p>Thank you for your purchase!</p>
+//       <div>
+//         <h2>Session Details</h2>
+//         <p>{session.customer_details?.email}</p>
+//         <pre>{JSON.stringify(session, null, 2)}</pre>
+//       </div>
+//     </div>
+//   );
+// }
+

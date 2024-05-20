@@ -18,7 +18,6 @@ export async function createBillingSession(
 export async function createCheckoutSession(
     user: User,
     price: string,
-    coupon: string,
 ) : Promise<string | null> {
     const session = await stripe.checkout.sessions.create({
         line_items: [
@@ -40,9 +39,9 @@ export async function createCheckoutSession(
         // discounts: [{
         //   coupon: 'zl7TRed0',
         // }],
-        success_url: 'https://viediscopello.fly.dev/success',
+        success_url: 'https://viediscopello.fly.dev/success?session_id={CHECKOUT_SESSION_ID}',
         cancel_url: 'https://viediscopello.fly.dev/payticket',
-        allow_promotion_codes: true,
+      //  allow_promotion_codes: true,
         consent_collection: {
           terms_of_service: 'required',
         },

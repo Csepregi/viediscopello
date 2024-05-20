@@ -45,12 +45,12 @@ export default function Program() {
             <div className="container mx-auto w-full h-full">
               {selectedDay === "venerdi" && (
                 <div className="relative wrap overflow-hidden p-10 h-full">
-                  <div className="absolute h-full border border-yellow-300 rounded-md right-1/2"></div>
-                  <div className="absolute h-full border border-yellow-300 rounded-md left-1/2"></div>
+                  <div className="absolute h-full border border-orange rounded-md right-1/2"></div>
+                  <div className="absolute h-full border border-orange rounded-md left-1/2"></div>
                   <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 9.30 </p>
+                      <p className="mb-3 text-base text-orange">ore 9.30 </p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">E-bike tour</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       Guida: Leonardo Vasile
@@ -72,7 +72,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between items-center w-full right-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4 text-left">
-                      <p className="mb-3 text-base text-yellow-300">ore 17.00 </p>
+                      <p className="mb-3 text-base text-orange">ore 17.00 </p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Hiking al tramonto</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       Guida: Leonardo Vasile
@@ -94,7 +94,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 17.30 </p>
+                      <p className="mb-3 text-base text-orange">ore 17.30 </p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Yoga dinamico a Scopello</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                        Istruttrice: Alice Palermo
@@ -110,7 +110,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between items-center w-full right-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4">
-                      <p className="mb-3 text-base text-yellow-300">ore 18.00</p>
+                      <p className="mb-3 text-base text-orange">ore 18.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl text-left">Laboratorio di lettura creativa per bambini (età 3+)</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       Condotto da: Haramundi
@@ -127,7 +127,7 @@ export default function Program() {
                     </div>
                   </div>
                   <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 18.00</p>
+                      <p className="mb-3 text-base text-orange">ore 18.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Masterclass: “impariamo a degustare il vino”</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                         Condotto da: Piero Rotolo, esperto di vino e giornalista enogastronomico
@@ -142,7 +142,7 @@ export default function Program() {
                     <div className="mb-8 flex justify-between items-center w-full right-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4">
-                      <p className="mb-3 text-base text-yellow-300">ore 18.00</p>
+                      <p className="mb-3 text-base text-orange">ore 18.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl text-left">Inizio degustazione</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       dj set di Cumbia a cura di Vito Raspanti
@@ -150,7 +150,7 @@ export default function Program() {
                     </div>
                   </div>
                   <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 20.00</p>
+                      <p className="mb-3 text-base text-orange">ore 20.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Live band e contradanza</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       con Totò Fundarò e Daniele Collura
@@ -165,7 +165,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 10.00</p>
+                      <p className="mb-3 text-base text-orange">ore 10.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Yoga del risveglio a Scopello</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       Istruttrice: Alice Palermo
@@ -181,7 +181,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between items-center w-full right-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4">
-                      <p className="mb-3 text-base text-yellow-300">ore 18.00</p>
+                      <p className="mb-3 text-base text-orange">ore 18.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl text-left">Laboratorio di lettura creativa per bambini (età 3+)</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       Condotto da: Haramundi
@@ -198,7 +198,7 @@ export default function Program() {
                     </div>
                   </div>
                   <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 18.00</p>
+                      <p className="mb-3 text-base text-orange">ore 18.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Masterclass: “impariamo a degustare il vino”</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                         Condotto da: Piero Rotolo, esperto di vino e giornalista enogastronomico
@@ -213,7 +213,7 @@ export default function Program() {
                     <div className="mb-8 flex justify-between items-center w-full right-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4">
-                      <p className="mb-3 text-base text-yellow-300">ore 18.00</p>
+                      <p className="mb-3 text-base text-orange">ore 18.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl text-left">Inizio degustazione</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       dj set di Cumbia a cura di Vito Raspanti
@@ -223,7 +223,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-yellow-300">ore 19.30</p>
+                      <p className="mb-3 text-base text-orange">ore 19.30</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">“Il tocco - gioco diVino”</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                       un racconto scritto e narrato da Daniele Billitteri
@@ -233,7 +233,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between items-center w-full right-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4">
-                      <p className="mb-3 text-base text-yellow-300">ore 21.00</p>
+                      <p className="mb-3 text-base text-orange">ore 21.00</p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl text-left">Live band con i Babel Tower</h4>
                     </div>
                   </div>

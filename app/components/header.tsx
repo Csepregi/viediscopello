@@ -17,7 +17,7 @@ export default function Header() {
     <header className="bg-white border-b-2 border-blue">
     <nav className="container flex justify-between items-center px-4 py-3 mx-auto md:py-4 lg:px-6" aria-label="Global">
       <a href="/" className="flex items-center">
-        <img className="h-16 w-auto sm:h-16" src="./logoscopello.png" alt="Scopello logo" />
+        <img className="h-16 w-auto sm:h-16" src="/logoscopello.png" alt="Scopello logo" />
       </a>
       <button onClick={toggleMenu} className="text-blue hover:text-gray-700 lg:hidden">
         <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>

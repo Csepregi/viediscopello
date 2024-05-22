@@ -94,7 +94,7 @@ export default function Program() {
                   <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                     <div className="order-1 w-5/12"></div>
                     <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-base text-orange">ore 17.30 </p>
+                      <p className="mb-3 text-base text-orange">ore 16.45 </p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl">Yoga dinamico a Scopello</h4>
                       <p className="text-sm md:text-base leading-snug text-gray-700">
                        Istruttrice: Alice Palermo

@@ -92,12 +92,30 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
     <div className="bg-white text-gray-900 min-h-screen">
     <div className="container mx-auto px-4 py-2">
         <div className="text-center mb-8">
-            <img src="./eventphoto.jpeg" alt="Event Logo" className="mx-auto h-36 mb-4" />
+        <div className="flex justify-center items-center space-x-16 mb-4">
+                        <img src="./eventphoto.jpeg" alt="Event Logo" className="h-36" />
+                        <img src="./comune.png" alt="Comune di Castellammare del Golfo" className="h-20" />
+                    </div>
             <h1 className="text-4xl font-bold text-blue">Le Vie di Scopello presenta la prima edizione di Tastavino!</h1>
+            <div className="mt-4">
+                        <p className="text-lg italic text-blue">Tastavino è un evento realizzato con il patrocinio del comune della città di Castellammare del Golfo</p>
+                    </div>
+            <div>
+            </div>
             <p className="text-xl my-4 text-blue">
                 Due giorni in cui potrete degustare vini di cantine locali, assaggiare prodotti tipici,
                 ballare con la nostra musica, e partecipare ad attività per grandi e piccoli.
             </p>
+            <div className="mb-6">
+            <Link to="/tickets" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
+              Acquista il tuo biglietto
+            </Link>
+            </div>
+            <div className="mb-6">
+            <Link to="/tastavino/program" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
+              Programma
+            </Link>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-items-center">
                
                     <div className="bg-blue-800 text-white rounded-lg py-3 px-6 shadow-md">
@@ -119,19 +137,9 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
             </div>
             <p className="text-lg font-semibold text-blue pb-5">Date e orari:</p>
             <p className="text-lg text-blue pb-2">- 31 maggio 2024 dalle 18 a mezzanotte</p>
-            <p className="text-lg text-blue pb-7">- 1 giugno 2024 dalle 18 a mezzanotte</p>
-            <div className="mb-6">
-            <Link to="/tickets" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
-              Acquista il tuo biglietto
-            </Link>
-            </div>
-            <div>
-            <Link to="/tastavino/program" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-brown transition-colors block text-center w-full md:w-auto md:inline-block">
-              Programma
-            </Link>
-            </div>
+            <p className="text-lg text-blue pb-2">- 1 giugno 2024 dalle 18 a mezzanotte</p>
         </div>
-        <div className="py-10">
+        <div className="py-5">
             <h2 className="text-3xl text-center font-bold mb-8 text-blue">Esplora le cantine</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {wineries.map((winery, index) => (

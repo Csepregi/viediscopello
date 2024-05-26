@@ -44,7 +44,7 @@ export default function Payticket() {
           note="n.b. + 3 EURO come cauzione per il calice da versare in contanti all'ingresso"
           lastNote="Potrai scegliere il tuo giorno preferito nel successivo passaggio"
         >
-          <List>degustazione di 4 calici di vino presso le cantine partecipanti</List>
+          <List>degustazione di 4 calici di vino delle le cantine partecipanti</List>
           <List>degustazioni gastronomiche presso gli stand presenti</List>
           <List>laboratorio di intreccio</List>
           <List>laboratori per bambini con inizio alle ore 18.00 o 19.00</List>
@@ -61,7 +61,7 @@ export default function Payticket() {
           lastNote="Potrai scegliere il tuo giorno preferito nel successivo passaggio"
         >
           <List>1 ora di masterclass esclusiva alle ore 18.00</List>
-          <List>degustazione di 4 calici di vino presso le cantine partecipanti</List>
+          <List>degustazione di 4 calici di vino delle le cantine partecipanti</List>
           <List>degustazioni gastronomiche presso gli stand presenti</List>
           <List>laboratorio di intreccio</List>
           <List>laboratori per bambini con inizio alle ore 18.00 o 19.00</List>

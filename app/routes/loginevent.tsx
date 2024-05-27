@@ -114,12 +114,6 @@ export default function LoginPage() {
                 placeholder="Password"
               />
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input id="remember_me" name="remember" type="checkbox" className="h-4 w-4 text-blue focus:ring-blue border-gray-300 rounded" />
-                <label htmlFor="remember_me" className="ml-2 block text-sm text-blue">Ricordami</label>
-              </div>
-            </div>
             <div>
               <button
                 type="submit"

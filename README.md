@@ -6,7 +6,7 @@ sicilian non profit organisation website
 ### Base Features
 
 - Database ORM with [Prisma.](https://www.prisma.io)
-- Production Ready with [SQLite](https://sqlite.org/index.html) and [PostgreSQL.](https://www.postgresql.org)
+- Production Ready with [SQLite](https://sqlite.org/index.html) 
 - [Fly app Deployment](https://fly.io) with [Docker.](https://www.docker.com/products/docker-desktop)
 - [GitHub Actions](https://github.com/features/actions) for Deploy on merge to Production and Staging environments.
 - HealthCheck Endpoint for [Fly Backups.](https://fly.io/docs/reference/configuration/#services-http_checks)

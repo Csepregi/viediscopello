@@ -78,11 +78,15 @@ export async function createCheckoutSession(
     return session.url
 }
 
+// export async function activeSubscription(user: User) {
+//   if(!user.stripeCustomerId) return false;
+//   if(!user.stripeSubscriptionId) return false;
+//   if(user.stripeSubscriptionStatus != 'active' && user.stripeSubscriptionStatus != 'trialing' ) return false;
+
+//   return true
+// }
 export async function activeSubscription(user: User) {
   if(!user.stripeCustomerId) return false;
-  if(!user.stripeSubscriptionId) return false;
-  if(user.stripeSubscriptionStatus != 'active' && user.stripeSubscriptionStatus != 'trialing' ) return false;
-
   return true
 }
 

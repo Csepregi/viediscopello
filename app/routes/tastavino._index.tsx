@@ -107,7 +107,7 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
                 ballare con la nostra musica, e partecipare ad attività per grandi e piccoli.
             </p>
             <div className="mb-6">
-            <Link to="/tickets" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
+            <Link to="/payticket" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
               Acquista il tuo biglietto
             </Link>
             </div>

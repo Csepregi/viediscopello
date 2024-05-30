@@ -17,7 +17,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
-  const remember = formData.get("remember");
+ // const remember = formData.get("remember");
 
   if (!validateEmail(email)) {
     return json(
@@ -51,7 +51,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   return createUserSession({
     redirectTo,
-    remember: remember === "on" ? true : false,
+    remember: true,
     request,
     userId: user.id,
   });

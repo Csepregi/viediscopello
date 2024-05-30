@@ -10,7 +10,7 @@ export async function createBillingSession(
 ) : Promise<string | null> {
     const session = await stripe.billingPortal.sessions.create({
         customer: user.stripeCustomerId,
-        return_url: 'https://viediscopello.fly.dev/tastavino',
+        return_url: 'https://viediscopello.it/tastavino',
       });
     return session.url
 }
@@ -39,15 +39,15 @@ export async function createCheckoutSession(
         // discounts: [{
         //   coupon: 'zl7TRed0',
         // }],
-        success_url: 'https://viediscopello.fly.dev/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'https://viediscopello.fly.dev/payticket',
-      //  allow_promotion_codes: true,
+        success_url: 'https://viediscopello.it/success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'https://viediscopello.it/payticket',
+        allow_promotion_codes: true,
         consent_collection: {
           terms_of_service: 'required',
         },
         custom_text: {
           terms_of_service_acceptance: {
-            message: 'Accetto i [Termini e Condizioni](https://viediscopello.fly.dev/terminiecondizioni)',
+            message: 'Accetto i [Termini e Condizioni](https://viediscopello.it/terminiecondizioni)',
           },
         },
           custom_fields: [
@@ -92,31 +92,31 @@ export async function subscriptionActive(user: User) {
     return true
 }
 
-export async function handleSubcriptionCreated(
-    stripeCustomerId: User["stripeCustomerId"],
-    subscription: any
-) {
-    await prisma.user.update({
-        where: { id: subscription.metadata.userId},
-        data: {
-            stripeSubscriptionId: subscription.id,
-            stripeSubscriptionStatus: subscription.status
-        }
-    })
-}
-
 // export async function handleSubcriptionCreated(
-//   stripeCustomerId: User["stripeCustomerId"],
-//   customer: any
+//     stripeCustomerId: User["stripeCustomerId"],
+//     subscription: any
 // ) {
-//   await prisma.user.update({
-//       where: { id: customer.metadata.userId},
-//       data: {
-//           stripeSubscriptionId: customer.id,
-//           stripeSubscriptionStatus: customer.status
-//       }
-//   })
+//     await prisma.user.update({
+//         where: { id: subscription.metadata.userId},
+//         data: {
+//             stripeSubscriptionId: subscription.id,
+//             stripeSubscriptionStatus: subscription.status
+//         }
+//     })
 // }
+
+export async function handleSubcriptionCreated(
+  stripeCustomerId: User["stripeCustomerId"],
+  customer: any
+) {
+  await prisma.user.update({
+      where: { id: customer.metadata.userId},
+      data: {
+          stripeSubscriptionId: customer.id,
+          stripeSubscriptionStatus: customer.status
+      }
+  })
+}
 
 export async function handleWebhook(request) {
     const secret = process.env.STRIPE_WEBHOOK_SECRET

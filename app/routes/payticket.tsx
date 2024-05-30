@@ -8,8 +8,7 @@ export const action: ActionFunction = async ({request}) => {
   const user = await requireUser(request)
   const formData = await request.formData();
   const price = formData.get('price');
-  const coupon = formData.get('coupon');
-  const url = await createCheckoutSession(user, price, coupon)
+  const url = await createCheckoutSession(user, price)
   return redirect(url)
 }
 

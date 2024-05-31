@@ -1,13 +1,26 @@
 import { requireUser } from "~/session.server";
 import { createCheckoutSession } from "~/models/subscription.server";
-import { ActionFunction, redirect } from "@remix-run/node";
+import { ActionFunction, json, redirect } from "@remix-run/node";
 
 
 
 export const action: ActionFunction = async ({request}) => {
+  if (request.method === "OPTIONS") {
+    return json({}, {
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Adjust this to your allowed origin
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    });
+  }
   const user = await requireUser(request)
   const formData = await request.formData();
   const price = formData.get('price');
+  if (typeof price !== 'string') {
+    // Handle the case where the price is null or not a string
+    throw new Error('Invalid price');
+  }
   const url = await createCheckoutSession(user, price)
   return redirect(url)
 }

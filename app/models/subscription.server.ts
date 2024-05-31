@@ -78,17 +78,17 @@ export async function createCheckoutSession(
     return session.url
 }
 
-// export async function activeSubscription(user: User) {
-//   if(!user.stripeCustomerId) return false;
-//   if(!user.stripeSubscriptionId) return false;
-//   if(user.stripeSubscriptionStatus != 'active' && user.stripeSubscriptionStatus != 'trialing' ) return false;
-
-//   return true
-// }
 export async function activeSubscription(user: User) {
   if(!user.stripeCustomerId) return false;
+  if(!user.stripeSubscriptionId) return false;
+  if(user.stripeSubscriptionStatus != 'active' && user.stripeSubscriptionStatus != 'trialing' ) return false;
+
   return true
 }
+// export async function activeSubscription(user: User) {
+//   if(!user.stripeCustomerId) return false;
+//   return true
+// }
 
 export async function subscriptionActive(user: User) {
     if(!user.stripeSubscriptionId) return false
@@ -96,31 +96,31 @@ export async function subscriptionActive(user: User) {
     return true
 }
 
-// export async function handleSubcriptionCreated(
-//     stripeCustomerId: User["stripeCustomerId"],
-//     subscription: any
-// ) {
-//     await prisma.user.update({
-//         where: { id: subscription.metadata.userId},
-//         data: {
-//             stripeSubscriptionId: subscription.id,
-//             stripeSubscriptionStatus: subscription.status
-//         }
-//     })
-// }
-
 export async function handleSubcriptionCreated(
-  stripeCustomerId: User["stripeCustomerId"],
-  customer: any
+    stripeCustomerId: User["stripeCustomerId"],
+    subscription: any
 ) {
-  await prisma.user.update({
-      where: { id: customer.metadata.userId},
-      data: {
-          stripeSubscriptionId: customer.id,
-          stripeSubscriptionStatus: customer.status
-      }
-  })
+    await prisma.user.update({
+        where: { id: subscription.metadata.userId},
+        data: {
+            stripeSubscriptionId: subscription.id,
+            stripeSubscriptionStatus: subscription.status
+        }
+    })
 }
+
+// export async function handleSubcriptionCreated(
+//   stripeCustomerId: User["stripeCustomerId"],
+//   customer: any
+// ) {
+//   await prisma.user.update({
+//       where: { id: customer.metadata.userId},
+//       data: {
+//           stripeSubscriptionId: customer.id,
+//           stripeSubscriptionStatus: customer.status
+//       }
+//   })
+// }
 
 export async function handleWebhook(request) {
     const secret = process.env.STRIPE_WEBHOOK_SECRET

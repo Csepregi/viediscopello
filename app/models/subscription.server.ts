@@ -10,7 +10,7 @@ export async function createBillingSession(
 ) : Promise<string | null> {
     const session = await stripe.billingPortal.sessions.create({
         customer: user.stripeCustomerId,
-        return_url: 'https://viediscopello.it/tastavino',
+        return_url: 'https://viediscopello.fly.dev/tastavino',
       });
     return session.url
 }
@@ -39,15 +39,15 @@ export async function createCheckoutSession(
         // discounts: [{
         //   coupon: 'zl7TRed0',
         // }],
-        success_url: 'https://viediscopello.it/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'https://viediscopello.it/payticket',
+        success_url: 'https://viediscopello.fly.dev/tastavino/success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'https://viediscopello.fly.dev/tastavino/payticket',
         allow_promotion_codes: true,
         consent_collection: {
           terms_of_service: 'required',
         },
         custom_text: {
           terms_of_service_acceptance: {
-            message: 'Accetto i [Termini e Condizioni](https://viediscopello.it/terminiecondizioni)',
+            message: 'Accetto i [Termini e Condizioni](https://viediscopello.fly.dev/tastavino/terminiecondizioni)',
           },
         },
           custom_fields: [

@@ -14,7 +14,7 @@ export default function DoveSiamo() {
             per le tonnare storiche, i borghi antichi, le acque termali, le saline, questo tratto di costa della Sicilia occidentale comprende anche la prima riserva naturale
              istituita in Sicilia, quella dello Zingaro, che si estende proprio da Scopello al comune di San Vito Lo Capo. </p>
              <p className="mt-6 text-xl leading-8 text-white">Scopello, la cui costa un tempo costituiva l’antica città di Cetaria, una sorta di emporio commerciale di età greca, 
-            prende il nome dal greco Σκόπελος (Scopelos), che significa proprio “scoglio”, un richiamo - probabilmente - alla presenza dei famosi faraglioni 
+            prende il nome dal greco Σκόπελος [Scopelos], che significa proprio “scoglio”, un richiamo - probabilmente - alla presenza dei famosi faraglioni 
             che oggi ne sono il simbolo.</p>
         </div>
       </div>

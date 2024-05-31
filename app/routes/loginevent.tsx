@@ -17,7 +17,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
- // const remember = formData.get("remember");
+  const remember = formData.get("remember");
 
   if (!validateEmail(email)) {
     return json(
@@ -51,7 +51,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   return createUserSession({
     redirectTo,
-    remember: true,
+    remember: remember === "on" ? true : false,
     request,
     userId: user.id,
   });
@@ -60,7 +60,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export const meta: MetaFunction = () => [{ title: "Login" }];
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/loginevent";
+  const redirectTo = searchParams.get("redirectTo") || "/payticket";
   const actionData = useActionData<typeof action>();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -114,6 +114,10 @@ export default function LoginPage() {
                 placeholder="Password"
               />
             </div>
+            <div className="flex items-center">
+                <input id="remember_me" name="remember" type="checkbox" className="h-4 w-4 text-blue focus:ring-blue border-gray-300 rounded" />
+                <label htmlFor="remember_me" className="ml-2 block text-sm text-blue">Ricordami</label>
+              </div>
             <div>
               <button
                 type="submit"

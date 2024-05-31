@@ -39,8 +39,8 @@ export async function createCheckoutSession(
         // discounts: [{
         //   coupon: 'zl7TRed0',
         // }],
-        success_url: 'https://viediscopello.it/tastavino/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'https://viediscopello.it/tastavino/payticket',
+        success_url: 'https://viediscopello.it/success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'https://viediscopello.it/payticket',
         allow_promotion_codes: true,
         consent_collection: {
           terms_of_service: 'required',

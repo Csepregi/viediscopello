@@ -36,7 +36,7 @@ export default function Program() {
               </button>
             </div>
             <div className="flex">
-            <Link to="/tickets" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
+            <Link to="/payticket" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
               Acquista il tuo biglietto
             </Link>
             </div>

@@ -35,11 +35,11 @@ export default function Program() {
                 Sabato
               </button>
             </div>
-            <div className="flex">
+            {/* <div className="flex">
             <Link to="/payticket" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
               Acquista il tuo biglietto
             </Link>
-            </div>
+            </div> */}
           </div>
           <div className="ml-0 md:ml-12 lg:w-2/3 sticky">
             <div className="container mx-auto w-full h-full">

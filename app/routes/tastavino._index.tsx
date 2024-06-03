@@ -106,11 +106,11 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
                 Due giorni in cui potrete degustare vini di cantine locali, assaggiare prodotti tipici,
                 ballare con la nostra musica, e partecipare ad attività per grandi e piccoli.
             </p>
-            <div className="mb-6">
+            {/* <div className="mb-6">
             <Link to="/payticket" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
               Acquista il tuo biglietto
             </Link>
-            </div>
+            </div> */}
             <div className="mb-6">
             <Link to="/tastavino/program" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
               Programma

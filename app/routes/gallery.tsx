@@ -30,7 +30,7 @@ export default function Gallery() {
       <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 p-4">
          {imageUrls.map((url, index) => (
             <>
-            <img className="rounded-md cursor-pointer"  key={index} src={url} alt={`Image ${index + 1}`} onClick={() => toggleView(url)} />
+            <img className="rounded-md cursor-pointer"  key={`Image ${index + 1}`} src={url} alt={`Image ${index + 1}`} onClick={() => toggleView(url)} />
             </>
           ))}
       </div>

@@ -1,38 +1,38 @@
 import { Link } from '@remix-run/react';
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 
 const Tastavino: React.FC = () => {
-    const targetDate = new Date('2024-05-31T00:00:00');
+   // const targetDate = new Date('2024-05-31T00:00:00');
 
-  const calculateTimeLeft = () => {
-    const difference = +targetDate - +new Date();
-    let timeLeft = {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-    };
+//   const calculateTimeLeft = () => {
+//     const difference = +targetDate - +new Date();
+//     let timeLeft = {
+//         days: 0,
+//         hours: 0,
+//         minutes: 0,
+//         seconds: 0,
+//     };
 
-    if (difference > 0) {
-        timeLeft = {
-            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-            minutes: Math.floor((difference / 1000 / 60) % 60),
-            seconds: Math.floor((difference / 1000) % 60),
-        };
-    }
+//     if (difference > 0) {
+//         timeLeft = {
+//             days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+//             hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+//             minutes: Math.floor((difference / 1000 / 60) % 60),
+//             seconds: Math.floor((difference / 1000) % 60),
+//         };
+//     }
 
-    return timeLeft;
-};
+//     return timeLeft;
+// };
 
-const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+// const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
-        return () => clearTimeout(timer);
-    });
+//     useEffect(() => {
+//         const timer = setTimeout(() => {
+//             setTimeLeft(calculateTimeLeft());
+//         }, 1000);
+//         return () => clearTimeout(timer);
+//     });
 
     const wineries = [
       {
@@ -96,7 +96,7 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
                         <img src="./eventphoto.jpeg" alt="Event Logo" className="h-36" />
                         <img src="./comune.png" alt="Comune di Castellammare del Golfo" className="h-20" />
                     </div>
-            <h1 className="text-4xl font-bold text-blue">Le Vie di Scopello presenta la prima edizione di Tastavino!</h1>
+            <h1 className="text-4xl font-bold text-blue">Le Vie di Scopello vi ringrazia per aver partecipato alla prima edizione di Tastavino!</h1>
             <div className="mt-4">
                         <p className="text-lg italic text-blue">Tastavino è un evento realizzato con il patrocinio del comune della città di Castellammare del Golfo</p>
                     </div>
@@ -112,11 +112,11 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
             </Link>
             </div> */}
             <div className="mb-6">
-            <Link to="/tastavino/program" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
-              Programma
+            <Link to="/tastavino/galleria" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
+              Galleria fotografica
             </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-items-center">
+            {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-items-center">
                
                     <div className="bg-blue-800 text-white rounded-lg py-3 px-6 shadow-md">
                         <div className="text-2xl font-bold text-blue">{timeLeft.days}</div>
@@ -134,13 +134,13 @@ const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
                         <div className="text-2xl font-bold text-blue">{timeLeft.seconds}</div>
                         <div className="text-sm uppercase text-blue">secondi</div>
                     </div>
-            </div>
+            </div> */}
             <p className="text-lg font-semibold text-blue pb-5">Date e orari:</p>
             <p className="text-lg text-blue pb-2">- 31 maggio 2024 dalle 18 a mezzanotte</p>
             <p className="text-lg text-blue pb-2">- 1 giugno 2024 dalle 18 a mezzanotte</p>
         </div>
         <div className="py-5">
-            <h2 className="text-3xl text-center font-bold mb-8 text-blue">Esplora le cantine</h2>
+            <h2 className="text-3xl text-center font-bold mb-8 text-blue">Scopri le cantine che hanno partecipato</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {wineries.map((winery, index) => (
                     <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">

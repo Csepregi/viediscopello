@@ -1,7 +1,7 @@
-// app/routes/gallery.tsx
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
-import { useLoaderData } from "@remix-run/react";
+import { defer, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
+import { FaCamera } from 'react-icons/fa'; // Import the icon from react-icons
 
 type LoaderData = {
   imageUrls: string[];
@@ -14,9 +14,9 @@ export const loader = async () => {
   });
   const data = await s3.send(command);
 
-  const imageUrls = data.Contents?.map(item => `https://viediscopello.s3.eu-central-1.amazonaws.com/${item.Key}`) || [];
+  const imageUrls = await data.Contents?.map(item => `https://d3fcvp7s4vbn7p.cloudfront.net/${item.Key}`) || [];
 
-  return { imageUrls };
+  return defer({ imageUrls });
 };
 
 export default function Gallery() {
@@ -27,10 +27,14 @@ export default function Gallery() {
   };
     return (
       <div className="p-4 bg-white">
+        <div className="text-center text-lg text-blue flex justify-center items-center mb-4">
+          <FaCamera className="mr-2" />
+          Foto di Andrea Marchese
+      </div>
       <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 p-4">
          {imageUrls.map((url, index) => (
             <>
-            <img className="rounded-md cursor-pointer"  key={`Image ${index + 1}`} src={url} alt={`Image ${index + 1}`} onClick={() => toggleView(url)} />
+            <img className="rounded-md cursor-pointer"  key={`Image ${url + index + 1}`} src={url} alt={`Image ${index + 1}`} onClick={() => toggleView(url)} />
             </>
           ))}
       </div>
@@ -40,7 +44,8 @@ export default function Gallery() {
               <img
                 src={selectedImage}
                 alt="Selected"
-                className="w-full aspect-[4/3] object-cover object-center"
+                className="object-contain rounded-md"
+                style={{ width: '100vw', height: '100vh' }}
               />
               <button
                 className="absolute top-2 right-2 bg-white text-black rounded-full p-2"

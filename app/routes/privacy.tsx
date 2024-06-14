@@ -96,7 +96,7 @@ function Privacy() {
                 ricordiamo che il titolare del trattamento dei dati personali è Le Vie di Scopello ASP, con
                 sede legale in Contrada Cala Mazzo di Sciacca 43, 91014 Scopello, Italia. Tutte le istanze
                 e richieste relative al trattamento dei dati personali che ti riguardano potranno essere
-                indirizzate all'indirizzo email viediscopello@gmail.com.
+                indirizzate all'indirizzo email viediscopello@gmail.com
             </p>
         </div>
         </div>

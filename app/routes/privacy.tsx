@@ -19,7 +19,7 @@ function Privacy() {
             <h2 className="text-2xl font-semibold mt-6 mb-4 text-blue">1. Raccolta delle informazioni</h2>
             <p className="text-justify mb-4 text-blue">
                 Quando visiti il nostro sito web, potremmo raccogliere le seguenti categorie di informazioni
-                personali:
+                personali :
             </p>
             <ul className="list-disc ml-8 mb-4 text-blue">
                 <li>Informazioni fornite volontariamente: potremmo raccogliere informazioni che ci

@@ -15,7 +15,7 @@ permissions:
   actions: write
   contents: read
 
-jobs:
+#jobs:
   # lint:
   #   name: ⬣ ESLint
   #   runs-on: ubuntu-latest

@@ -15,8 +15,11 @@ export default function Header() {
           <img className="h-16 w-auto sm:h-16" src="/logoscopello.png" alt="Scopello logo" />
         </a>
         <div className="flex items-center space-x-4">
-          <a href="/tastavino" className="px-4 py-2 bg-celeste text-blue text-xl font-semibold rounded-md hover:bg-celeste transition-colors duration-200">Tastavino</a>
+          <a href="/contradanza" className="px-4 py-2 bg-orange text-blue text-xl font-semibold rounded-md hover:bg-celeste transition-colors duration-200">Contradanza</a>
+          <a href="/tastavino" className="px-4 py-2 bg-celeste text-blue text-xl font-semibold rounded-md hover:bg-orange transition-colors duration-200">Tastavino</a>
+
           <div className="relative">
+            
             <button
               onClick={toggleDropdown}
               type="button"

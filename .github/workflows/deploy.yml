@@ -30,6 +30,9 @@ jobs:
           cache-dependency-path: ./package.json
           node-version: 18
 
+       - name: Install pnpm
+         run: npm install -g pnpm
+
       - name: 📥 Install deps
         run: pnpm install
 

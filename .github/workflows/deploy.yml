@@ -31,13 +31,13 @@ jobs:
           node-version: 18
 
       - name: Install pnpm
-         run: npm install -g pnpm
+        run: npm install -g pnpm
 
       - name: 📥 Install deps
-         run: pnpm install
+        run: pnpm install
 
       - name: 🔬 Lint
-         run: pnpm run lint
+        run: pnpm run lint
 
   typecheck:
     name: ʦ TypeScript

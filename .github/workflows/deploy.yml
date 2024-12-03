@@ -33,11 +33,11 @@ jobs:
        - name: Install pnpm
          run: npm install -g pnpm
 
-      - name: 📥 Install deps
-        run: pnpm install
+      -  name: 📥 Install deps
+         run: pnpm install
 
-      - name: 🔬 Lint
-        run: pnpm run lint
+      -  name: 🔬 Lint
+         run: pnpm run lint
 
   typecheck:
     name: ʦ TypeScript

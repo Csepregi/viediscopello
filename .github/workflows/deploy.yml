@@ -26,15 +26,15 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          cache: npm
+          cache: pnpm
           cache-dependency-path: ./package.json
           node-version: 18
 
       - name: 📥 Install deps
-        run: npm install
+        run: pnpm install
 
       - name: 🔬 Lint
-        run: npm run lint
+        run: pnpm run lint
 
   typecheck:
     name: ʦ TypeScript
@@ -54,7 +54,7 @@ jobs:
         run: npm install
 
       - name: 🔎 Type check
-        run: npm run typecheck --if-present
+        run: pnpm run typecheck --if-present
 
   playwright:
     name: 🎭 Playwright
@@ -68,7 +68,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: npm
-          cache-dependency-path: ./package.json
+          cache-dependency-path: ./pnpm-lock.yaml
           node-version: 18
 
       - name: 📥 Install deps

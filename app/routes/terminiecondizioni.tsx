@@ -1,5 +1,4 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "@remix-run/react"
 
 export default function TerminiECondizioni() {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ export default function TerminiECondizioni() {
     <div className="flex justify-center items-center min-h-screen bg-white text-blue p-4">
       <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
         <button
-          onClick={handleBackClick}
+         // onClick={handleBackClick}
           className="absolute top-4 left-4 text-blue-500 hover:text-blue-700"
           aria-label="Go back"
         >

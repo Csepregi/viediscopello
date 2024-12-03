@@ -3,6 +3,12 @@ import { useState } from "react";
 
 export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [eventsDropdownOpen, setEventsDropdownOpen] = useState(false);
+
+  const toggleEventsDropdown = () => {
+    setEventsDropdownOpen(!eventsDropdownOpen);
+    setLoginDropdownOpen(false); // Close the login dropdown if open
+  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -15,7 +21,22 @@ export default function Header() {
           <img className="h-16 w-auto sm:h-16" src="/logoscopello.png" alt="Scopello logo" />
         </a>
         <div className="flex items-center space-x-4">
-          <a href="/contradanza" className="px-4 py-2 bg-orange text-blue text-xl font-semibold rounded-md hover:bg-celeste transition-colors duration-200">Contradanza</a>
+        <div className="relative">
+            <button
+              onClick={toggleEventsDropdown}
+              type="button"
+              className="px-4 py-2 bg-blue text-white text-xl font-semibold rounded-md hover:bg-blue-700 transition-colors duration-200"
+            >
+              Eventi
+            </button>
+            {eventsDropdownOpen && (
+              <div className="absolute left-0 w-48 mt-2 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                <a href="/contradanza" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">
+                  Contradanza
+                </a>
+              </div>
+            )}
+          </div>
           <a href="/tastavino" className="px-4 py-2 bg-celeste text-blue text-xl font-semibold rounded-md hover:bg-orange transition-colors duration-200">Tastavino</a>
 
           <div className="relative">

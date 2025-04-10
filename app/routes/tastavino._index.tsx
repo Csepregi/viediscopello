@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 import React  from 'react';
 
 const Tastavino: React.FC = () => {
@@ -106,14 +106,14 @@ const Tastavino: React.FC = () => {
                 Due giorni in cui potrete degustare vini di cantine locali, assaggiare prodotti tipici,
                 ballare con la nostra musica, e partecipare ad attività per grandi e piccoli.
             </p>
-             <div className="mb-6">
-            {/* <Link to="/payticket" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
+             {/* <div className="mb-6">
+            <Link to="/payticket" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-celeste transition-colors block text-center w-full md:w-auto md:inline-block">
               Acquista il tuo biglietto
-            </Link> */}
-            </div>
+            </Link>
+            </div> */}
             <div className="mb-6">
             <Link to="/tastavino/galleria" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
-              Galleria fotografica
+              Galleria fotograficas
             </Link>
             </div>
             {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-items-center">
@@ -135,7 +135,7 @@ const Tastavino: React.FC = () => {
                         <div className="text-sm uppercase text-blue">secondi</div>
                     </div>
             </div> */}
-            <p className="text-lg font-semibold text-blue pb-5">Date e orari:</p>
+            <p className="text-lg font-semibold text-blue pb-5">Date e oraris:</p>
             <p className="text-lg text-blue pb-2">- 31 maggio 2024 dalle 18 a mezzanotte</p>
             <p className="text-lg text-blue pb-2">- 1 giugno 2024 dalle 18 a mezzanotte</p>
         </div>

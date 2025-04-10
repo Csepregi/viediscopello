@@ -1,5 +1,5 @@
 import type { Subscription } from '@prisma/client'
-import { db } from '~/utils/db.server'
+import { db } from '../../utils/db.server'
 
 export async function updateSubscriptionById(
   id: Subscription['id'],

@@ -1,12 +1,13 @@
-import { requireUser } from "~/session.server";
-import { createCheckoutSession } from "~/models/subscription.server";
-import { ActionFunction, json, redirect } from "@remix-run/node";
+import { requireUser } from "../models/session.server";
+import { createCheckoutSession } from "../models/subscription.server";
+import { ActionFunction,  redirect } from "react-router";
+import React from "react";
 
 
 
 export const action: ActionFunction = async ({request}) => {
   if (request.method === "OPTIONS") {
-    return json({}, {
+    return ({
       headers: {
         "Access-Control-Allow-Origin": "*", // Adjust this to your allowed origin
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",

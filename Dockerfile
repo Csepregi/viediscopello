@@ -1,58 +1,63 @@
-# Base node image.
+# Base node image
 FROM node:18-bullseye-slim as base
 
-# Set global environment variables.
+# Set global environment variables
 ENV PORT="8080"
 ENV NODE_ENV="production"
-ENV DATABASE_URL=file:/data/sqlite.db 
+ENV DATABASE_URL="file:/data/sqlite.db"
 
-# Install openssl for Prisma.
-RUN apt-get update && apt-get install -y sqlite3
+# Install openssl and other dependencies for Prisma
+RUN apt-get update && apt-get install -y sqlite3 openssl
 
-# Install all node_modules, including dev dependencies.
+# Install pnpm
+RUN npm install -g pnpm
+
+# Install dependencies
 FROM base as deps
 
 WORKDIR /myapp
 
-ADD package.json package-lock.json ./
-RUN npm install --include=dev
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
+COPY prisma ./prisma/
 
-# Setup production node_modules.
-FROM base as production-deps
-
-WORKDIR /myapp
-COPY --from=deps /myapp/node_modules /myapp/node_modules
-
-ADD package.json package-lock.json ./
-RUN npm prune --omit=dev
-
-# Build the app.
-FROM base as build
-
-WORKDIR /myapp
-COPY --from=deps /myapp/node_modules /myapp/node_modules
-
-ADD prisma .
+# Install dependencies and generate Prisma client
+RUN pnpm install --frozen-lockfile
 RUN npx prisma generate
 
-ADD . .
-RUN npm run build
+# Build the app
+FROM deps as build
 
-# Finally, build the production image with minimal footprint.
+# Copy application code
+COPY . .
+RUN pnpm run build
+
+# Production image
 FROM base
-
-# Add shortcut for connecting to database CLI.
-RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli 
 
 WORKDIR /myapp
 
-COPY --from=production-deps /myapp/node_modules /myapp/node_modules
-COPY --from=build /myapp/node_modules/.prisma /myapp/node_modules/.prisma
+# Add database CLI shortcut
+RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
 
-COPY --from=build /myapp/build /myapp/build
-COPY --from=build /myapp/public /myapp/public
-COPY --from=build /myapp/prisma /myapp/prisma
-COPY --from=build /myapp/package.json /myapp/package.json
-COPY --from=build /myapp/start.sh /myapp/start.sh
+# Copy built assets
+COPY --from=build /myapp/build ./build
+COPY --from=build /myapp/public ./public
+COPY --from=build /myapp/package.json .
+COPY --from=build /myapp/pnpm-lock.yaml .
+COPY --from=build /myapp/prisma ./prisma
+COPY --from=build /myapp/start.sh .
+
+# Install production dependencies and generate Prisma client
+RUN pnpm install --prod --frozen-lockfile
+RUN npx prisma generate
+
+# Ensure proper permissions
+RUN chmod +x ./start.sh
+RUN mkdir -p /data && chown -R node:node /data
+
+
+# Switch to non-root user
+USER node
 
 ENTRYPOINT [ "./start.sh" ]

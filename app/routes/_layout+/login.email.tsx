@@ -1,9 +1,9 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
-import { json } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
+import React from 'react';
+import type { ActionFunctionArgs, LoaderFunctionArgs } from 'react-router';
+import { Form, useLoaderData } from 'react-router';
 
-import { authenticator } from '~/services/auth/config.server'
-import { getSession, commitSession } from '~/services/auth/session.server'
+import { authenticator } from '../../services/auth/config.server'
+import { getSession, commitSession } from '../../services/auth/session.server'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const userSession = await authenticator.isAuthenticated(request, {
@@ -17,14 +17,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const error = session.get(authenticator.sessionErrorKey)
 
   // Commit session, clearing any possible error.
-  return json(
-    { user: userSession, hasSentEmail, email, error },
-    {
+  return {
+     user: { userSession, hasSentEmail, email, error },
       headers: {
         'Set-Cookie': await commitSession(session),
       },
-    },
-  )
+    }
 }
 
 export async function action({ request }: ActionFunctionArgs) {

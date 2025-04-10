@@ -1,4 +1,5 @@
 import { useStripe } from '@stripe/react-stripe-js'
+import React from 'react';
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -27,7 +28,10 @@ const Index = () => {
 
 
     return (
-        <h3>{paymentStatus}</h3>
+        <>
+         <h3>{paymentStatus}</h3>
+        </>
+       
     )
 
 }

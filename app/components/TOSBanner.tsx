@@ -1,11 +1,12 @@
 
 import { styled } from "../stitches.config";
-import { useFetcher, useLocation } from "@remix-run/react";
+import { useFetcher, useLocation } from "react-router";
 
 import Button from "./base/Button";
 import Flex from "./base/Flex";
 import Link from "./base/Link";
 import Text from "./base/Text";
+import React from "react";
 
 export const LAST_UPDATED_DATE = new Date("01/01/2024").valueOf();
 

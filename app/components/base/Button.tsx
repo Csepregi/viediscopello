@@ -1,6 +1,6 @@
 import type { ComponentProps, VariantProps } from "@stitches/react";
 
-import { styled } from "~/stitches.config";
+import { styled } from "../../stitches.config";
 
 export type ButtonProps = ComponentProps<typeof Button>;
 export type ButtonVariants = VariantProps<typeof Button>;

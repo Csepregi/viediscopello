@@ -1,9 +1,9 @@
-import { LoaderFunctionArgs } from '@remix-run/node';
-import { Link } from '@remix-run/react';
+import type { ActionFunctionArgs } from "react-router";
+import { Link } from "react-router";
 import React from 'react';
-import { requirePaidUserId } from "~/session.server";
+import { requirePaidUserId } from "../session.server";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: ActionFunctionArgs) => {
   const userId = await requirePaidUserId(request);
   return userId;
 };

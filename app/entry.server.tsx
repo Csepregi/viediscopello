@@ -5,13 +5,14 @@
  */
 
 import { PassThrough } from 'node:stream'
-import type { EntryContext } from '@remix-run/node'
-import { createReadableStreamFromReadable } from '@remix-run/node'
-import { RemixServer } from '@remix-run/react'
+import type { EntryContext } from 'react-router';
+import { createReadableStreamFromReadable } from '@react-router/node';
+import { ServerRouter } from 'react-router';
 import { renderToPipeableStream } from 'react-dom/server'
 import { getSharedEnvs } from './utils/envs'
 
 import isbot from 'isbot'
+import React from 'react';
 
 /**
  * Global Shared Envs.
@@ -24,24 +25,25 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
 ) {
   return isbot(request.headers.get('user-agent'))
-    ? handleBotRequest(request, responseStatusCode, responseHeaders, remixContext)
-    : handleBrowserRequest(request, responseStatusCode, responseHeaders, remixContext)
+    ? handleBotRequest(request, responseStatusCode, responseHeaders, reactRouterContext)
+    : handleBrowserRequest(request, responseStatusCode, responseHeaders, reactRouterContext);
 }
 
 function handleBotRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
 ) {
   return new Promise((resolve, reject) => {
     let didError = false
 
     const { abort, pipe } = renderToPipeableStream(
-      <RemixServer context={remixContext} url={request.url} />,
+      <ServerRouter context={remixContext} url={request.url} />,
+
       {
         onAllReady() {
           const body = new PassThrough()
@@ -69,20 +71,20 @@ function handleBotRequest(
     )
 
     setTimeout(abort, ABORT_DELAY)
-  })
+  });
 }
 
 function handleBrowserRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
 ) {
   return new Promise((resolve, reject) => {
     let didError = false
 
     const { abort, pipe } = renderToPipeableStream(
-      <RemixServer context={remixContext} url={request.url} />,
+      <ServerRouter context={reactRouterContext} url={request.url} />,
       {
         onShellReady() {
           const body = new PassThrough()
@@ -110,5 +112,5 @@ function handleBrowserRequest(
     )
 
     setTimeout(abort, ABORT_DELAY)
-  })
+  });
 }

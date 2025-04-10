@@ -1,8 +1,8 @@
-import { json, redirect, type ActionFunctionArgs } from "@remix-run/node";
-import { tosBannerCookie } from "~/cookie.server";
+import {  redirect, type ActionFunctionArgs } from "react-router";
+import { tosBannerCookie } from "../cookie.server";
 
 export async function loader() {
-  return json("Method not allowed", { status: 405 });
+  return ({ status: 405 });
 }
 
 export async function action({ request }: ActionFunctionArgs) {

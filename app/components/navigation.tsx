@@ -1,5 +1,6 @@
 import type { User } from '@prisma/client'
-import { Link, Form, useLocation } from '@remix-run/react'
+import React from 'react';
+import { Link, Form, useLocation } from 'react-router';
 
 type NavigationProps = {
   user: User | null

@@ -1,4 +1,4 @@
-import { styled } from "~/stitches.config";
+import { styled } from "../../stitches.config";
 import type { ComponentProps, VariantProps } from "@stitches/react";
 
 type TextProps = ComponentProps<typeof Text>;

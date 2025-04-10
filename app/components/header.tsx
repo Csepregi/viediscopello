@@ -1,11 +1,12 @@
-import { Form } from "@remix-run/react";
-import { useState } from "react";
+import { Form } from "react-router";
+import React, { useState } from "react";
 
 export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [eventsDropdownOpen, setEventsDropdownOpen] = useState(false);
 
   const toggleEventsDropdown = () => {
+    console.log('Hello')
     setEventsDropdownOpen(!eventsDropdownOpen);
     setLoginDropdownOpen(false); // Close the login dropdown if open
   };
@@ -54,7 +55,12 @@ export default function Header() {
               <div className="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none">
                 <a href="/loginevent" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Login</a>
                 <Form action="/logout" method="post">
-                  <button type="submit" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100 w-full text-left">Logout</button>
+                  <button 
+                    type="submit" 
+                    className="block px-4 py-2 text-sm text-blue hover:bg-gray-100 w-full text-left"
+                  >
+                    Logout
+                  </button>
                 </Form>
               </div>
             )}

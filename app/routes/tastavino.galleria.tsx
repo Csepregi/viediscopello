@@ -1,6 +1,6 @@
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
-import { defer, useLoaderData } from "@remix-run/react";
-import { useState } from "react";
+import { useLoaderData } from "react-router";
+import React, { useState } from "react";
 import { FaCamera } from 'react-icons/fa'; // Import the icon from react-icons
 
 type LoaderData = {
@@ -14,7 +14,7 @@ export const loader = async () => {
   });
   const data = await s3.send(command);
 
-  const imageUrls = await data.Contents?.map(item => `https://d3fcvp7s4vbn7p.cloudfront.net/${item.Key}`) || [];
+  const imageUrls = (await data.Contents?.map(item => `https://d3fcvp7s4vbn7p.cloudfront.net/${item.Key}`)) || [];
 
   return defer({ imageUrls });
 };
@@ -34,7 +34,7 @@ export default function Gallery() {
       <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 p-4">
          {imageUrls.map((url, index) => (
             <>
-            <img className="rounded-md cursor-pointer"  key={`Image ${url + index + 1}`} src={url} alt={`Image ${index + 1}`} onClick={() => toggleView(url)} />
+            <img className="rounded-md cursor-pointer"  key={`Image ${url + index + 1}`} src={url} alt={`${index + 1}`} onClick={() => toggleView(url)} />
             </>
           ))}
       </div>
@@ -59,3 +59,7 @@ export default function Gallery() {
       </div>
   );
 }
+function defer(arg0: { imageUrls: string[]; }) {
+  throw new Error("Function not implemented.");
+}
+

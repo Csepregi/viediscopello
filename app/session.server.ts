@@ -1,8 +1,8 @@
-import { createCookieSessionStorage, redirect } from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "react-router";
 import invariant from "tiny-invariant";
 
-import type { User } from "~/models/user.server";
-import { getUserById } from "~/models/user.server";
+import type { User } from "./models/user.server";
+import { getUserById } from "./models/user.server";
 import { activeSubscription } from "./models/subscription.server";
 
 invariant(process.env.SESSION_SECRET, "SESSION_SECRET must be set");
@@ -48,6 +48,7 @@ export async function requireUserId(
   redirectTo: string = new URL(request.url).pathname,
 ) {
   const userId = await getUserId(request);
+  console.log('User Id: ', userId)
   if (!userId) {
     const searchParams = new URLSearchParams([["redirectTo", redirectTo]]);
     throw redirect(`/loginevent?${searchParams}`);
@@ -69,7 +70,7 @@ export async function requirePaidUserId(
   redirectTo: string = new URL(request.url).pathname,
 ): Promise<string> {
   const user = await requireUser(request);
-  if (!await activeSubscription(user)) {
+  if (!(await activeSubscription(user))) {
     const searchParams = new URLSearchParams([["redirectTo", redirectTo]]);
     throw redirect(`/payticket?${searchParams}`);
   }

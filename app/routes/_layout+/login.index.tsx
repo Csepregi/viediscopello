@@ -1,4 +1,5 @@
-import { Form, Link } from '@remix-run/react'
+import React from 'react';
+import { Form, Link } from 'react-router';
 
 export default function LoginIndex() {
   return (

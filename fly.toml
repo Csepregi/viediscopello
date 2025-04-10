@@ -11,11 +11,14 @@ cmd = "start.sh"
 entrypoint = "sh"
 
 [mounts]
-destination = "/data"
 source = "data"
+destination = "/data"
+
+[env]
+  DATABASE_URL = "file:/data/sqlite.db"
 
 [[services]]
-internal_port = 8_080
+internal_port = 8080  # Changed from 8_080
 processes = [ "app" ]
 protocol = "tcp"
 script_checks = [ ]
@@ -41,12 +44,12 @@ script_checks = [ ]
   timeout = "2s"
 
 [[services.http_checks]]
-  grace_period = "5s"
+  grace_period = "30s"
   interval = "30s"
   method = "get"
   path = "/api/healthcheck"
   protocol = "http"
-  timeout = "2s"
+  timeout = "10s"
   tls_skip_verify = false
   headers = { }
- 
+

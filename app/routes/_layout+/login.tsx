@@ -1,13 +1,13 @@
-import type { LoaderFunctionArgs } from '@remix-run/node'
-import { json } from '@remix-run/node'
-import { Outlet, useLocation } from '@remix-run/react'
-import { authenticator } from '~/services/auth/config.server'
+import React from 'react';
+import type { LoaderFunctionArgs } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
+import { authenticator } from '../../services/auth/config.server'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await authenticator.isAuthenticated(request, {
     successRedirect: '/account',
   })
-  return json({})
+  return ({})
 }
 
 export default function Login() {

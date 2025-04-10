@@ -1,4 +1,5 @@
-import type { MetaFunction } from '@remix-run/node'
+import React from 'react';
+import type { MetaFunction } from 'react-router';
 
 export const meta: MetaFunction = () => [
   { title: 'VieDiScopello' },

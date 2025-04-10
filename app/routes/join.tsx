@@ -1,58 +1,56 @@
-import { LoaderFunctionArgs, redirect, json, ActionFunctionArgs } from "@remix-run/node";
-import { Form, Link, MetaFunction, useActionData, useSearchParams } from "@remix-run/react";
+import {  LoaderFunctionArgs, redirect } from "react-router";
+import { Form, Link, MetaFunction, useActionData, useSearchParams } from "react-router";
 import { useRef, useEffect } from "react";
 import { safeRedirect } from "remix-utils/safe-redirect";
-import { getUserByEmail, createUser } from "~/models/user.server";
-import { getUserId, createUserSession } from "~/session.server";
-import { validateEmail } from "~/utils";
+import { getUserByEmail, createUser } from "../models/user.server";
+import { getUserId, createUserSession } from "../session.server";
+import { validateEmail } from "../utils";
+import React from "react";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs ) => {
   const userId = await getUserId(request);
   if (userId) return redirect("/");
-  return json({});
+  return ({});
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: LoaderFunctionArgs) => {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
 
   if (!validateEmail(email)) {
-    return json(
-      { errors: { email: "Email is invalid", password: null } },
-      { status: 400 },
-    );
+    return {    
+      errors: { email: "Email is invalid", password: null },
+      status: 400,
+    };
   }
 
   if (typeof password !== "string" || password.length === 0) {
-    return json(
-      { errors: { email: null, password: "Password is required" } },
-      { status: 400 },
-    );
+    return {
+      errors: { email: null, password: "Password is required" },
+      status: 400,
+    };
   }
 
-  if (password.length < 8) {
-    return json(
-      { errors: { email: null, password: "Password is too short" } },
-      { status: 400 },
-    );
+  if (password.length < 4) {
+    return {
+      errors: { email: null, password: "Password is too short" },
+      status: 400,
+    };
   }
 
   const existingUser = await getUserByEmail(email);
   if (existingUser) {
-    return json(
-      {
+    return {
         errors: {
-          email: "A user already exists with this email",
-          password: null,
-        },
-      },
-      { status: 400 },
-    );
-  }
-
-  const user = await createUser(email, password);
+                 email: "A user already exists with this email",
+                 password: null 
+                },
+        status: 400 
+        }
+    };
+    const user = await createUser(email, password);
   
   return createUserSession({
     redirectTo,
@@ -60,7 +58,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     request,
     userId: user.id,
   });
-};
+}
+
+  
+
 
 export const meta: MetaFunction = () => [{ title: "Sign Up" }];
 

@@ -1,5 +1,5 @@
 
-import { styled } from "~/stitches.config";
+import { styled } from "../../stitches.config";
 
 import type { ComponentProps, VariantProps } from "@stitches/react";
 import UnstyledLink from "./UnstyledLink";

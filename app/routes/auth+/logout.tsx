@@ -1,7 +1,9 @@
-import type { ActionFunctionArgs } from '@remix-run/node'
-import { authenticator } from '~/services/auth/config.server'
+import React from 'react';
+import type { ActionFunctionArgs } from 'react-router';
+import { authenticator } from '../../services/auth/config.server'
 
 export async function action({ request }: ActionFunctionArgs) {
+  console.log('Logout action')
   return await authenticator.logout(request, { redirectTo: '/' })
 }
 

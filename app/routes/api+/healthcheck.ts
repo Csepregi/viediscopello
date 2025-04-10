@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs } from '@remix-run/node'
-import { db } from '~/utils/db.server'
+import type { LoaderFunctionArgs } from 'react-router';
+import { db } from '../../utils/db.server'
 
 /**
  * Learn more about Fly.io Health Check:

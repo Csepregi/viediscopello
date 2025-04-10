@@ -1,9 +1,9 @@
 import type {User } from "@prisma/client";
-import { prisma } from "~/db.server";
+import { prisma } from "../db.server";
 import Stripe from "stripe";
 import { updateSubscriptionByUserId } from "./subscription/update-subscription";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2022-11-15' })
 
 export async function createBillingSession(
     user: User
@@ -19,6 +19,7 @@ export async function createCheckoutSession(
     user: User,
     price: string,
 ) : Promise<string | null> {
+  console.log('User ', user)
     const session = await stripe.checkout.sessions.create({
         line_items: [
           {
@@ -39,7 +40,9 @@ export async function createCheckoutSession(
         // discounts: [{
         //   coupon: 'zl7TRed0',
         // }],
+       // success_url: 'https://viediscopello.it/success?session_id={CHECKOUT_SESSION_ID}',
         success_url: 'https://viediscopello.it/success?session_id={CHECKOUT_SESSION_ID}',
+
         cancel_url: 'https://viediscopello.it/payticket',
         allow_promotion_codes: true,
         consent_collection: {
@@ -159,7 +162,7 @@ export async function updateSubscriptionStatus(
     await prisma.user.update({
         where: { id },
         data: {
-            stripeSubcriptionStatus: status
+            stripeSubscriptionStatus: status as string
         }
     })
 }

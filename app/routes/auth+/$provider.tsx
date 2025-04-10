@@ -1,5 +1,6 @@
-import type { ActionFunctionArgs } from '@remix-run/node'
-import { authenticator } from '~/services/auth/config.server'
+import React from 'react';
+import type { ActionFunctionArgs } from 'react-router';
+import { authenticator } from '../../services/auth/config.server'
 
 export async function action({ params, request }: ActionFunctionArgs) {
   if (typeof params.provider !== 'string') throw new Error('Invalid provider.')

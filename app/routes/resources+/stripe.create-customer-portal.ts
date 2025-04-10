@@ -1,5 +1,5 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
-import { redirect, json } from '@remix-run/node'
+import type { ActionFunctionArgs, LoaderFunctionArgs } from 'react-router';
+import { redirect, json } from 'react-router';
 import { authenticator } from '~/services/auth/config.server'
 import { getUserById } from '~/models/user/get-user'
 import { createStripeCustomerPortalSession } from '~/services/stripe/api/create-customer-portal'

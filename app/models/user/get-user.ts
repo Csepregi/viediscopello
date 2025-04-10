@@ -1,5 +1,5 @@
 import type { User } from '@prisma/client'
-import { db } from '~/utils/db.server'
+import { db } from '../../utils/db.server'
 
 export async function getUserById(id: User['id']) {
   return db.user.findUnique({
@@ -13,10 +13,10 @@ export async function getUserByEmail(email: User['email']) {
   })
 }
 
-export async function getUserByCustomerId(customerId: User['customerId']) {
+export async function getUserByCustomerId(customerId: User['stripeCustomerId']) {
   if (!customerId) throw new Error('Missing required parameters to retrieve User.')
 
   return db.user.findUnique({
-    where: { customerId },
+    where: { id: customerId },
   })
 }

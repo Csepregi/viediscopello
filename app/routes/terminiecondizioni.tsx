@@ -1,4 +1,5 @@
-import { useNavigate } from "@remix-run/react"
+import React from "react";
+import { useNavigate } from "react-router";
 
 export default function TerminiECondizioni() {
   const navigate = useNavigate();

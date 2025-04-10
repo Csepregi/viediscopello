@@ -2,6 +2,8 @@ import DoveSiamo from "./doveSiamo";
 import ChiSiamo from "./chiSiamo";
 import CheFacciamo from "./cheFacciamo";
 import Footer from '../components/footer'
+import React from "react";
+import Header from "../components/header";
 
 
 export default function Index() {
@@ -15,6 +17,7 @@ export default function Index() {
 
   return (
 <>
+<Header />
 <div className="header w-full min-h-screen flex flex-col justify-between">
     <div className="flex flex-col justify-center h-full py-12">
         <div className="self-center items-center flex flex-col sm:flex-row w-full md:w-5/6 xl:w-2/3 px-4 sm:px-0">

@@ -1,4 +1,5 @@
 import { useStripe, useElements,PaymentElement } from '@stripe/react-stripe-js'
+import React from 'react';
 
 
 const Index = () => {
@@ -13,7 +14,7 @@ const Index = () => {
             await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: 'http://localhost:3000/pay/success'
+                    return_url: 'http://viediscopello.it/pay/success'
                 }
             })
         }

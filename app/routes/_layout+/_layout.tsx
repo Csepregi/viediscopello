@@ -1,9 +1,11 @@
-import type { LoaderFunctionArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from 'react-router';
 import type { User } from '@prisma/client'
-import { redirect, json } from '@remix-run/node'
-import { Outlet } from '@remix-run/react'
-import { authenticator } from '~/services/auth/config.server'
-import Header from '~/components/header'
+import { redirect } from 'react-router';
+import { Outlet } from 'react-router';
+import { authenticator } from '../../services/auth/config.server'
+import React from 'react';
+import Header from '../../components/header';
+import { Navigation } from '../../components/navigation';
 
 type LoaderData = {
   user: User | null
@@ -16,7 +18,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url)
   if (session && url.pathname === '/') return redirect('/account')
 
-  return json<LoaderData>({ user: session })
+  return ({ user: session })
 }
 
 export default function Layout() {
@@ -30,7 +32,6 @@ export default function Layout() {
       <div />
       {/* Navigation. */}
       <Header/>
-      {/* <Navigation user={user} /> */}
       {/* Outlet. */}
       <Outlet />
 

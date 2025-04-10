@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import React from 'react';
 import { faCalendarDays, faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 
 const EventPage = () => {
   return (

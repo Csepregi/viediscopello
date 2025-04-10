@@ -3,14 +3,14 @@ import type { User } from '@prisma/client'
 import { Authenticator } from 'remix-auth'
 import { OTPStrategy } from 'remix-auth-otp'
 import { SocialsProvider, GoogleStrategy } from 'remix-auth-socials'
-import { sessionStorage } from '~/services/auth/session.server'
+import { sessionStorage } from '../../services/auth/session.server'
 
-import { getUserByEmail } from '~/models/user/get-user'
-import { createUser } from '~/models/user/create-user'
+import { getUserByEmail } from '../../models/user/get-user'
+import { createUser } from '../../models/user/create-user'
 
-import { db } from '~/utils/db.server'
-import { HOST_URL } from '~/utils/http'
-import { sendEmail } from '~/services/email/config.server'
+import { db } from '../../utils/db.server'
+import { HOST_URL } from '../../utils/http'
+import { sendEmail } from '../../services/email/config.server'
 
 /**
  * Inits Authenticator.

@@ -26,3 +26,4 @@ node_modules
 
 # Docker PostgreSQL.
 postgres-data
+.react-router/

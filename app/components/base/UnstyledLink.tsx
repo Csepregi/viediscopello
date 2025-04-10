@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react";
-import { styled } from "~/stitches.config";
+import { Link } from "react-router";
+import { styled } from "../../stitches.config";
 import Text from "./Text";
 
 const UnstyledLink = styled(Link, Text, {

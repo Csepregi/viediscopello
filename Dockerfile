@@ -1,14 +1,14 @@
 # Base node image
 FROM node:20-bullseye-slim as base
 
+# Install required packages including bash
+RUN apt-get update && apt-get install -y sqlite3 openssl bash
+
 # Set global environment variables
 ENV PORT="3000"
 ENV NODE_ENV="production"
 ENV DATABASE_URL="file:/data/sqlite.db"
 ENV HOST="0.0.0.0"
-
-# Install openssl and other dependencies for Prisma
-RUN apt-get update && apt-get install -y sqlite3 openssl
 
 # Install pnpm
 RUN npm install -g pnpm

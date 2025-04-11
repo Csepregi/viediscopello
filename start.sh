@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash  # Change this line to use bash instead of sh
 
 # Print environment information
 echo "NODE_ENV: $NODE_ENV"
-echo "DATABASE_URL: ${DATABASE_URL:0:15}..." # Only show beginning for security
+# Use a simpler way to mask the database URL
+echo "DATABASE_URL: ***masked***"
 echo "PORT: $PORT"
 echo "HOST: $HOST"
 

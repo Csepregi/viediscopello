@@ -1,5 +1,5 @@
 # Base node image
-FROM node:18-bullseye-slim as base
+FROM node:20-bullseye-slim as base
 
 # Set global environment variables
 ENV PORT="3000"

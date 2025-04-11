@@ -11,5 +11,12 @@ export default defineConfig({
   plugins: [reactRouter(), tsconfigPaths()],
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: [
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-solid-svg-icons',
+      '@fortawesome/free-brands-svg-icons',
+      '@stitches/react',
+      '@fortawesome/react-fontawesome'
+    ]
   },
 });

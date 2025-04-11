@@ -9,7 +9,7 @@ kill_timeout = 30
 
 [[vm]]
   cpu_kind = "shared"
-  memory_mb = 512
+  memory_mb = 1024
   min_machines_running = 1
 
 [mounts]

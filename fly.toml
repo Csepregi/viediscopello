@@ -40,20 +40,12 @@ kill_timeout = 30
     path = "/api/healthcheck"
     protocol = "http"
     timeout = "30s"
+    tls_skip_verify = false
+    headers = { }
 
   [[services.tcp_checks]]
     interval = "30s"
     timeout = "30s"
     restart_limit = 3
     grace_period = "180s"
-
-  [[services.http_checks]]
-    interval = "30s"
-    grace_period = "180s"
-    method = "get"
-    path = "/api/healthcheck"
-    protocol = "http"
-    timeout = "30s"
-    tls_skip_verify = false
-    headers = { }
 

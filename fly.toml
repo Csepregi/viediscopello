@@ -18,7 +18,7 @@ destination = "/data"
   DATABASE_URL = "file:/data/sqlite.db"
 
 [[services]]
-internal_port = 8080
+internal_port = 3000
 processes = [ "app" ]
 protocol = "tcp"
 script_checks = [ ]
@@ -38,18 +38,18 @@ script_checks = [ ]
   port = 443
 
   [[services.tcp_checks]]
-  grace_period = "120s"
+  grace_period = "180s"    # Increased grace period
   interval = "30s"
-  restart_limit = 6
-  timeout = "20s"
+  restart_limit = 3        # Reduced restart limit
+  timeout = "30s"          # Increased timeout
 
-[[services.http_checks]]
-  grace_period = "30s"
+  [[services.http_checks]]
+  grace_period = "180s"    # Increased grace period
   interval = "30s"
   method = "get"
   path = "/api/healthcheck"
   protocol = "http"
-  timeout = "10s"
+  timeout = "30s"          # Increased timeout
   tls_skip_verify = false
   headers = { }
 

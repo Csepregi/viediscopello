@@ -2,7 +2,7 @@
 FROM node:18-bullseye-slim as base
 
 # Set global environment variables
-ENV PORT="8080"
+ENV PORT="3000"
 ENV NODE_ENV="production"
 ENV DATABASE_URL="file:/data/sqlite.db"
 

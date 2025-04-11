@@ -113,7 +113,7 @@ const Tastavino: React.FC = () => {
             </div> */}
             <div className="mb-6">
             <Link to="/tastavino/galleria" className="text-blue px-6 py-3 rounded-full text-xl font-semibold bg-orange transition-colors block text-center w-full md:w-auto md:inline-block">
-              Galleria fotograficas
+              Galleria fotografica
             </Link>
             </div>
             {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-items-center">

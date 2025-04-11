@@ -1,15 +1,16 @@
 #!/bin/sh
 
-# Attempt to create swap (but don't fail if it doesn't work)
-fallocate -l 512M /swapfile || true
-chmod 0600 /swapfile || true
-mkswap /swapfile || true
-echo 10 > /proc/sys/vm/swappiness || true
-swapon /swapfile || true
-echo 1 > /proc/sys/vm/overcommit_memory || true
+# Print environment information
+echo "NODE_ENV: $NODE_ENV"
+echo "DATABASE_URL: ${DATABASE_URL:0:15}..." # Only show beginning for security
+echo "PORT: $PORT"
+echo "HOST: $HOST"
 
-# Run prisma migrations
+# Run prisma migrations with verbose logging
+echo "Running database migrations..."
 npx prisma migrate deploy
+echo "Migrations completed"
 
 # Start the application with explicit host and port
-HOST=0.0.0.0 PORT=3000 exec node ./build/server/index.js
+echo "Starting application..."
+HOST=0.0.0.0 PORT=3000 NODE_ENV=production exec node ./build/server/index.js

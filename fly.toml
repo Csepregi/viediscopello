@@ -13,6 +13,10 @@ kill_timeout = 30
   cmd = "start.sh"
   entrypoint = "sh"
 
+[mounts]
+  source = "data"
+  destination = "/data"
+
 [[services]]
   internal_port = 3000
   protocol = "tcp"

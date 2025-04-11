@@ -5,6 +5,7 @@ FROM node:18-bullseye-slim as base
 ENV PORT="3000"
 ENV NODE_ENV="production"
 ENV DATABASE_URL="file:/data/sqlite.db"
+ENV HOST="0.0.0.0"
 
 # Install openssl and other dependencies for Prisma
 RUN apt-get update && apt-get install -y sqlite3 openssl
@@ -56,6 +57,8 @@ RUN npx prisma generate
 RUN chmod +x ./start.sh
 RUN mkdir -p /data && chown -R node:node /data
 
+# Expose the port
+EXPOSE 3000
 
 # Switch to non-root user
 USER node

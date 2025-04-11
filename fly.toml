@@ -2,54 +2,55 @@ app = "viediscopello"
 primary_region = "cdg"
 kill_signal = "SIGINT"
 kill_timeout = 30
-processes = [ ]
-
-[experimental]
-allowed_public_ports = [ ]
-auto_rollback = true
-cmd = "start.sh"
-entrypoint = "sh"
-
-[mounts]
-source = "data"
-destination = "/data"
 
 [env]
+  PORT = "3000"
   DATABASE_URL = "file:/data/sqlite.db"
 
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+  cmd = "start.sh"
+  entrypoint = "sh"
+
 [[services]]
-internal_port = 3000
-processes = [ "app" ]
-protocol = "tcp"
-script_checks = [ ]
-
-  [services.concurrency]
-  hard_limit = 25
-  soft_limit = 20
-  type = "connections"
-
-  [[services.ports]]
+  internal_port = 3000
+  protocol = "tcp"
   force_https = true
-  handlers = [ "http" ]
-  port = 80
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
 
   [[services.ports]]
-  handlers = [ "tls", "http" ]
-  port = 443
+    port = 80
+    handlers = ["http"]
+    force_https = true
 
-  [[services.tcp_checks]]
-  grace_period = "180s"    # Increased grace period
-  interval = "30s"
-  restart_limit = 3        # Reduced restart limit
-  timeout = "30s"          # Increased timeout
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
 
   [[services.http_checks]]
-  grace_period = "180s"    # Increased grace period
-  interval = "30s"
-  method = "get"
-  path = "/api/healthcheck"
-  protocol = "http"
-  timeout = "30s"          # Increased timeout
-  tls_skip_verify = false
-  headers = { }
+    interval = "30s"
+    grace_period = "180s"
+    method = "get"
+    path = "/api/healthcheck"
+    protocol = "http"
+    timeout = "30s"
+
+  [[services.tcp_checks]]
+    interval = "30s"
+    timeout = "30s"
+    restart_limit = 3
+    grace_period = "180s"
+
+  [[services.http_checks]]
+    interval = "30s"
+    grace_period = "180s"
+    method = "get"
+    path = "/api/healthcheck"
+    protocol = "http"
+    timeout = "30s"
+    tls_skip_verify = false
+    headers = { }
 

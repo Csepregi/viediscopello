@@ -9,6 +9,9 @@ ENV PORT="3000"
 ENV NODE_ENV="production"
 ENV DATABASE_URL="file:/data/sqlite.db"
 ENV HOST="0.0.0.0"
+ENV DEV_HOST_URL="http://localhost:3000"
+ENV PROD_HOST_URL="your-production-url"
+ENV SESSION_SECRET="your-session-secret"
 
 # Install pnpm
 RUN npm install -g pnpm

@@ -14,20 +14,24 @@ export const links: LinksFunction = () => {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const cookieHeader = request.headers.get("Cookie");
-  const cookie = await tosBannerCookie.parse(cookieHeader);
+  try {
+    const cookieHeader = request.headers.get("Cookie");
+    const cookie = await tosBannerCookie.parse(cookieHeader);
 
-  if (cookie) {
-    return { showTOSBanner: cookie?.dateTOSRead < LAST_UPDATED_DATE };
-  }
-  return (
-    {
+    if (cookie) {
+      return { showTOSBanner: cookie?.dateTOSRead < LAST_UPDATED_DATE };
+    }
+    return {
       headers: {
         "Set-Cookie": await tosBannerCookie.serialize({
           dateTOSRead: 0,
         }),
       },
-    })
+    };
+  } catch (error) {
+    console.error('Root loader error:', error);
+    throw error;
+  }
 }
 
 export default function App() {

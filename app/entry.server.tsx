@@ -42,7 +42,7 @@ function handleBotRequest(
     let didError = false
 
     const { abort, pipe } = renderToPipeableStream(
-      <ServerRouter context={remixContext} url={request.url} />,
+      <ServerRouter context={reactRouterContext} url={request.url} />,
 
       {
         onAllReady() {

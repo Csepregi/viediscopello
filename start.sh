@@ -1,17 +1,22 @@
-#!/bin/bash  # Change this line to use bash instead of sh
+#!/bin/bash
 
 # Print environment information
 echo "NODE_ENV: $NODE_ENV"
-# Use a simpler way to mask the database URL
 echo "DATABASE_URL: ***masked***"
 echo "PORT: $PORT"
 echo "HOST: $HOST"
 
 # Run prisma migrations with verbose logging
 echo "Running database migrations..."
-npx prisma migrate deploy
+if ! npx prisma migrate deploy; then
+    echo "Migration failed!"
+    exit 1
+fi
 echo "Migrations completed"
 
-# Start the application with explicit host and port
+# Wait for a moment to ensure database is ready
+sleep 2
+
+# Start the application using environment variables
 echo "Starting application..."
-HOST=0.0.0.0 PORT=3000 NODE_ENV=production exec node ./build/server/index.js
+exec node ./build/server/index.js

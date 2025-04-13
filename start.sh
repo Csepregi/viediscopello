@@ -1,14 +1,12 @@
 #!/bin/bash
-
 set -e
 
 echo "NODE_ENV: $NODE_ENV"
 echo "PORT: $PORT"
-echo "HOST: $HOST"
-echo "Running database migrations..."
-npx prisma migrate deploy
-npx prisma generate
-echo "Migrations and client generation complete."
 
-echo "Starting application..."
+echo "Running migrations..."
+npx prisma migrate deploy
+npx prisma generate 
+
+echo "Starting app..."
 exec node ./build/server/index.js

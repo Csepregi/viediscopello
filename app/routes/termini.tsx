@@ -1,8 +1,8 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { data } from "react-router";
+import type { Route } from "./+types/termini";
 
 export function loader() {
-  return json({
+  return data({
     termsTitle: "Termini e condizioni d'uso per l'acquisto dei biglietti per l’evento Tastavano",
     sections: [
       {
@@ -43,8 +43,8 @@ export function loader() {
 }
 
 // 3. Display terms and conditions using Tailwind CSS for styling
-export default function Termini() {
-  const { termsTitle, sections } = useLoaderData<typeof loader>();
+export default function Termini({ loaderData }: Route.ComponentProps) {
+  const { termsTitle, sections } = loaderData;
 
   return (
     <div className="p-8 bg-white">

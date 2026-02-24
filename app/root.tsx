@@ -1,36 +1,36 @@
-import { json, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
+import { data } from "react-router";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
-} from '@remix-run/react'
+} from 'react-router'
+import type { Route } from './+types/root'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 import { getSharedEnvs } from './utils/envs'
-import TailwindCSS from './root.css'
-import Layout from './routes/_layout+/_layout'
+import TailwindCSS from './root.css?url'
+import Layout from './routes/_app/_layout'
 import { tosBannerCookie } from "./cookie.server";
 import { LAST_UPDATED_DATE, TOSBanner } from "./components/TOSBanner";
 import { getCssText } from "./stitches.config";
 
-export const links: LinksFunction = () => {
+export const links: Route.LinksFunction = () => {
   return [{ rel: 'stylesheet', href: TailwindCSS }]
 }
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = await tosBannerCookie.parse(cookieHeader);
+  const ENV = getSharedEnvs();
 
   if (cookie) {
-    return json({ showTOSBanner: cookie?.dateTOSRead < LAST_UPDATED_DATE });
+    return data({ ENV, showTOSBanner: cookie?.dateTOSRead < LAST_UPDATED_DATE });
   }
-  return json(
-    { ENV: getSharedEnvs(),
+  return data(
+    { ENV,
       showTOSBanner: true,
       
      },
@@ -44,9 +44,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   );
 }
 
-export default function App() {
+export default function App({ loaderData }: Route.ComponentProps) {
    library.add(fas, faTwitter, faFontAwesome)
-   const { ENV, showTOSBanner } = useLoaderData<typeof loader>()
+   const { ENV, showTOSBanner } = loaderData
 
   return (
     <html lang="en">
@@ -83,7 +83,6 @@ export default function App() {
           }}
         />
 
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
   )

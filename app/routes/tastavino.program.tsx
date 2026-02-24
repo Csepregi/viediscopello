@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 import React, { useState } from "react";
 
 export default function Program() {

@@ -1,7 +1,7 @@
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
-import { defer, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { FaCamera } from 'react-icons/fa';
+import type { Route } from "./+types/tastavino.galleria";
 
 type LoaderData = {
   imageUrls: string[];
@@ -26,7 +26,7 @@ export const loader = async () => {
     // Create a larger set by repeating the images
     const repeatedImages = Array.from({ length: 4 }, () => placeholderImages).flat();
     
-    return defer({ imageUrls: repeatedImages });
+    return { imageUrls: repeatedImages };
   }
   
   // In production, use the real S3/CloudFront images
@@ -40,11 +40,11 @@ export const loader = async () => {
     `https://d3fcvp7s4vbn7p.cloudfront.net/${item.Key}`
   ) || [];
 
-  return defer({ imageUrls });
+  return { imageUrls };
 };
 
-export default function Gallery() {
-  const { imageUrls } = useLoaderData<LoaderData>();
+export default function Gallery({ loaderData }: Route.ComponentProps) {
+  const { imageUrls } = loaderData as LoaderData;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const toggleView = (url: string | null) => {

@@ -1,6 +1,6 @@
 
 import { styled } from "../stitches.config";
-import { useFetcher, useLocation } from "@remix-run/react";
+import { useFetcher, useLocation } from "react-router";
 
 import Button from "./base/Button";
 import Flex from "./base/Flex";

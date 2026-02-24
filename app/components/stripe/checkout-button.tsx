@@ -2,7 +2,7 @@ import type { Plan } from '@prisma/client'
 import type { Interval } from '~/services/stripe/plans'
 
 import { PlanId } from '~/services/stripe/plans'
-import { useFetcher } from '@remix-run/react'
+import { useFetcher } from 'react-router'
 
 type CheckoutButtonProps = {
   currentPlanId: Plan['id'] | null

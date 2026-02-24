@@ -19,8 +19,8 @@ export default function Success() {
     );
   }
 
-//   import { json, LoaderFunction } from "@remix-run/node";
-// import { useLoaderData } from "@remix-run/react";
+//   import { json, LoaderFunction } from "react-router";
+// import { useLoaderData } from "react-router";
 // import Stripe from "stripe";
 // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 

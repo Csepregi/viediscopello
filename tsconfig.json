@@ -1,5 +1,10 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "remix.env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".react-router/types/**/*"
+  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "target": "ES2020",
@@ -8,12 +13,15 @@
     "strict": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "noEmit": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["@react-router/node", "vite/client"],
     "paths": {
       "~/*": ["./app/*"]
     }

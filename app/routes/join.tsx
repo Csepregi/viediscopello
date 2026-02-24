@@ -1,39 +1,40 @@
-import { LoaderFunctionArgs, redirect, json, ActionFunctionArgs } from "@remix-run/node";
-import { Form, Link, MetaFunction, useActionData, useSearchParams } from "@remix-run/react";
+import { data, redirect } from "react-router";
+import { Form, Link, useSearchParams } from "react-router";
 import { useRef, useEffect } from "react";
 import { safeRedirect } from "remix-utils/safe-redirect";
 import { getUserByEmail, createUser } from "~/models/user.server";
 import { getUserId, createUserSession } from "~/session.server";
 import { validateEmail } from "~/utils";
+import type { Route } from "./+types/join";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   const userId = await getUserId(request);
   if (userId) return redirect("/");
-  return json({});
+  return data({});
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
 
   if (!validateEmail(email)) {
-    return json(
+    return data(
       { errors: { email: "Email is invalid", password: null } },
       { status: 400 },
     );
   }
 
   if (typeof password !== "string" || password.length === 0) {
-    return json(
+    return data(
       { errors: { email: null, password: "Password is required" } },
       { status: 400 },
     );
   }
 
   if (password.length < 8) {
-    return json(
+    return data(
       { errors: { email: null, password: "Password is too short" } },
       { status: 400 },
     );
@@ -41,7 +42,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const existingUser = await getUserByEmail(email);
   if (existingUser) {
-    return json(
+    return data(
       {
         errors: {
           email: "A user already exists with this email",
@@ -62,12 +63,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   });
 };
 
-export const meta: MetaFunction = () => [{ title: "Sign Up" }];
+export const meta: Route.MetaFunction = () => [{ title: "Sign Up" }];
 
-export default function Join() {
+export default function Join({ actionData }: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? undefined;
-  const actionData = useActionData<typeof action>();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 

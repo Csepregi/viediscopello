@@ -1,9 +1,9 @@
-import { LoaderFunctionArgs } from '@remix-run/node';
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 import React from 'react';
 import { requirePaidUserId } from "~/session.server";
+import type { Route } from './+types/tickets';
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   const userId = await requirePaidUserId(request);
   return userId;
 };

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useLoaderData } from "@remix-run/react";
 import WineryCards from "~/components/WineryCards";
 import ImageGallery from "~/components/ImageGallery";
 import { fetchTastavinoIIGalleryImages, fetchTastavinoIIMontageImages, fetchTastavinoIINightImages } from "~/utils/s3Gallery.server";
+import type { Route } from "./+types/tastavino-II._index";
 
 type LoaderData = {
   galleryImages: string[];
@@ -40,8 +40,8 @@ export const loader = async () => {
   };
 };
 
-export default function TastavinoII() {
-  const { galleryImages, s3GalleryImages, nightGalleryImages } = useLoaderData<LoaderData>();
+export default function TastavinoII({ loaderData }: Route.ComponentProps) {
+  const { galleryImages, s3GalleryImages, nightGalleryImages } = loaderData as LoaderData;
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, ] = useState(true);

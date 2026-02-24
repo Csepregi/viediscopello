@@ -1,25 +1,50 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 
 export default function Header() {
   const [eventsMenuOpen, setEventsMenuOpen] = useState(false);
+  const eventsMenuRef = useRef<HTMLDivElement>(null);
 
 
   const toggleEventsMenu = () => {
-    setEventsMenuOpen(!eventsMenuOpen);
+    setEventsMenuOpen((open) => !open);
   };
 
+  useEffect(() => {
+    const onPointerDown = (event: MouseEvent) => {
+      if (!eventsMenuRef.current?.contains(event.target as Node)) {
+        setEventsMenuOpen(false);
+      }
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setEventsMenuOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
+
   return (
-    <header className="bg-white border-b-2 border-blue">
+    <header className="relative z-50 bg-white border-b-2 border-blue">
       <nav className="container flex justify-between items-center px-4 py-3 mx-auto md:py-4 lg:px-6" aria-label="Global">
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img className="h-16 w-auto sm:h-16" src="/logoscopello.png" alt="Scopello logo" />
-        </a>
+        </Link>
         
         <div className="flex items-center space-x-4">
           {/* Events dropdown */}
-          <div className="relative">
+          <div className="relative" ref={eventsMenuRef}>
             <button 
+              type="button"
               onClick={toggleEventsMenu}
+              aria-expanded={eventsMenuOpen}
+              aria-haspopup="menu"
+              aria-controls="events-menu"
               className="px-4 py-2 bg-blue text-white text-xl font-semibold rounded-md hover:bg-opacity-90 transition-colors duration-200 flex items-center"
             >
               Eventi
@@ -29,12 +54,16 @@ export default function Header() {
             </button>
             
             {eventsMenuOpen && (
-              <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+              <div
+                id="events-menu"
+                role="menu"
+                className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-[60]"
+              >
                 <div className="py-1 divide-y divide-gray-200">
                   <div className="px-3 py-2 text-sm font-medium text-blue">Eventi Passati</div>
-                  <a href="/contradanza" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">La Notte della Contradanza</a>
-                  <a href="/tastavino" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Tastavino vol. I</a>
-                  <a href="/tastavino-II" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Tastavino vol. II</a>
+                  <Link to="/contradanza" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100" role="menuitem" onClick={() => setEventsMenuOpen(false)}>La Notte della Contradanza</Link>
+                  <Link to="/tastavino" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100" role="menuitem" onClick={() => setEventsMenuOpen(false)}>Tastavino vol. I</Link>
+                  <Link to="/tastavino-II" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100" role="menuitem" onClick={() => setEventsMenuOpen(false)}>Tastavino vol. II</Link>
                 </div>
               </div>
             )}

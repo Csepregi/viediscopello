@@ -3,7 +3,7 @@ import {
   faFacebook,
   faInstagram
 } from "@fortawesome/free-brands-svg-icons";
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 
 
 export default function Footer() {

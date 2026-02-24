@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
 
 type Ticket = {
   id: string;

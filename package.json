@@ -5,16 +5,17 @@
   "sideEffects": false,
   "packageManager": "pnpm@10.1.0",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
+    "build": "react-router build",
+    "dev": "react-router dev",
     "format": "prettier --write .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/index.js",
+    "postinstall": "prisma generate",
+    "start": "react-router-serve ./build/server/index.js",
     "test:e2e:dev": "playwright test",
     "test:e2e:install": "pnpm exec playwright install chromium --with-deps",
     "pretest:e2e:run": "pnpm build",
     "test:e2e:run": "cross-env CI=true playwright test",
-    "typecheck": "tsc",
+    "typecheck": "react-router typegen && tsc",
     "validate": "pnpm lint && pnpm typecheck && pnpm test:e2e:run"
   },
   "dependencies": {
@@ -24,9 +25,8 @@
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.2.0",
     "@prisma/client": "^6.19.2",
-    "@remix-run/node": "^2.17.4",
-    "@remix-run/react": "^2.17.4",
-    "@remix-run/serve": "^2.17.4",
+    "@react-router/node": "^7.13.1",
+    "@react-router/serve": "^7.13.1",
     "@stitches/react": "^1.2.8",
     "@stripe/react-stripe-js": "^5.6.0",
     "@stripe/stripe-js": "^8.8.0",
@@ -43,6 +43,7 @@
     "react-dom": "^18.3.1",
     "react-i18next": "^16.5.4",
     "react-icons": "^5.5.0",
+    "react-router": "^7.13.1",
     "remix-utils": "^9.0.1",
     "stripe": "^20.3.1",
     "tiny-invariant": "^1.3.3",
@@ -50,7 +51,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@remix-run/dev": "^2.17.4",
+    "@react-router/dev": "^7.13.1",
     "@remix-run/eslint-config": "^2.17.4",
     "@types/bcryptjs": "^3.0.0",
     "@types/eslint": "^9.6.1",
@@ -62,15 +63,16 @@
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "prisma": "^6.19.2",
-    "remix-flat-routes": "^0.8.5",
+    "react-router-auto-routes": "^0.8.2",
     "stripe-event-types": "^3.1.0",
     "tailwindcss": "^3.4.19",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "prisma": {
     "seed": "ts-node --require tsconfig-paths/register prisma/seed.ts"

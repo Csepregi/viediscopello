@@ -1,11 +1,12 @@
-import { json, redirect, type ActionFunctionArgs } from "@remix-run/node";
+import { data, redirect } from "react-router";
 import { tosBannerCookie } from "~/cookie.server";
+import type { Route } from "./+types/hide-tos-banner";
 
 export async function loader() {
-  return json("Method not allowed", { status: 405 });
+  return data("Method not allowed", { status: 405 });
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const redirectUrl = (await request.formData()).get("redirectUrl");
   return redirect(typeof redirectUrl === "string" ? redirectUrl : "/", {
     headers: {

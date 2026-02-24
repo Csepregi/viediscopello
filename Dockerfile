@@ -17,6 +17,8 @@ WORKDIR /myapp
 
 ADD package.json pnpm-lock.yaml .npmrc ./
 RUN pnpm install --frozen-lockfile --prod=false
+ADD prisma ./prisma
+RUN pnpm exec prisma generate
 
 # Setup production node_modules.
 FROM base as production-deps

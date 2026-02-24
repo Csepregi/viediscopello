@@ -1,21 +1,22 @@
 # Base node image.
-FROM node:18-bullseye-slim as base
+FROM node:22-bullseye-slim as base
 
 # Set global environment variables.
 ENV PORT="8080"
 ENV NODE_ENV="production"
 ENV DATABASE_URL=file:/data/sqlite.db 
 
-# Install openssl for Prisma.
+# Install sqlite client for runtime debugging and enable pinned pnpm via Corepack.
 RUN apt-get update && apt-get install -y sqlite3
+RUN corepack enable && corepack prepare pnpm@10.1.0 --activate
 
 # Install all node_modules, including dev dependencies.
 FROM base as deps
 
 WORKDIR /myapp
 
-ADD package.json package-lock.json ./
-RUN npm install --include=dev
+ADD package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm install --frozen-lockfile --prod=false
 
 # Setup production node_modules.
 FROM base as production-deps
@@ -23,8 +24,8 @@ FROM base as production-deps
 WORKDIR /myapp
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 
-ADD package.json package-lock.json ./
-RUN npm prune --omit=dev
+ADD package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm prune --prod
 
 # Build the app.
 FROM base as build
@@ -32,11 +33,12 @@ FROM base as build
 WORKDIR /myapp
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 
-ADD prisma .
-RUN npx prisma generate
+ADD package.json pnpm-lock.yaml .npmrc ./
+ADD prisma ./prisma
+RUN pnpm exec prisma generate
 
 ADD . .
-RUN npm run build
+RUN pnpm build
 
 # Finally, build the production image with minimal footprint.
 FROM base

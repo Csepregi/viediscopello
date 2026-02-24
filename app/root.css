@@ -6,6 +6,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar hiding utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 .perspective {
   perspective: 1000px;
 }

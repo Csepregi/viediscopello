@@ -94,7 +94,7 @@ const Tastavino: React.FC = () => {
         <div className="text-center mb-8">
         <div className="flex justify-center items-center space-x-16 mb-4">
                         <img src="./eventphoto.jpeg" alt="Event Logo" className="h-36" />
-                        <img src="./comune.png" alt="Comune di Castellammare del Golfo" className="h-20" />
+                        <img src="./sponsor-comune.png" alt="Comune di Castellammare del Golfo" className="h-20" />
                     </div>
             <h1 className="text-4xl font-bold text-blue">Le Vie di Scopello vi ringrazia per aver partecipato alla prima edizione di Tastavino!</h1>
             <div className="mt-4">

@@ -1,11 +1,11 @@
-import { Form } from "@remix-run/react";
 import { useState } from "react";
 
 export default function Header() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [eventsMenuOpen, setEventsMenuOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+
+  const toggleEventsMenu = () => {
+    setEventsMenuOpen(!eventsMenuOpen);
   };
 
   return (
@@ -14,12 +14,34 @@ export default function Header() {
         <a href="/" className="flex items-center">
           <img className="h-16 w-auto sm:h-16" src="/logoscopello.png" alt="Scopello logo" />
         </a>
+        
         <div className="flex items-center space-x-4">
-          <a href="/contradanza" className="px-4 py-2 bg-orange text-blue text-xl font-semibold rounded-md hover:bg-celeste transition-colors duration-200">Contradanza</a>
-          <a href="/tastavino" className="px-4 py-2 bg-celeste text-blue text-xl font-semibold rounded-md hover:bg-orange transition-colors duration-200">Tastavino</a>
-
+          {/* Events dropdown */}
           <div className="relative">
+            <button 
+              onClick={toggleEventsMenu}
+              className="px-4 py-2 bg-blue text-white text-xl font-semibold rounded-md hover:bg-opacity-90 transition-colors duration-200 flex items-center"
+            >
+              Eventi
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
             
+            {eventsMenuOpen && (
+              <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                <div className="py-1 divide-y divide-gray-200">
+                  <div className="px-3 py-2 text-sm font-medium text-blue">Eventi Passati</div>
+                  <a href="/contradanza" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">La Notte della Contradanza</a>
+                  <a href="/tastavino" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Tastavino vol. I</a>
+                  <a href="/tastavino-II" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Tastavino vol. II</a>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* User dropdown */}
+          {/* <div className="relative">
             <button
               onClick={toggleDropdown}
               type="button"
@@ -30,14 +52,14 @@ export default function Header() {
               </svg>
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none">
+              <div className="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none z-10">
                 <a href="/loginevent" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100">Login</a>
                 <Form action="/logout" method="post">
                   <button type="submit" className="block px-4 py-2 text-sm text-blue hover:bg-gray-100 w-full text-left">Logout</button>
                 </Form>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>

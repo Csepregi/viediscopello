@@ -42,15 +42,7 @@ const EventPage = () => {
           </div>
           {/* Button */}
           
-          <Link to='https://docs.google.com/forms/d/14R3FEuB8YYTAyxq4m5Op6mvmx9ElpBD2ES3ANzISu1Y/viewform?fbclid=IwY2xjawEn5ldleHRuA2FlbQIxMQABHYzAV04ZsQsaPp5QKdWaSkaZbGBrJYDHg1SQTCv1DG1qG1K5TlyKOnP5Iw_aem_jBa71swJuFG_MSqUm3bBHg&edit_requested=true' target="_blank">
-
-          <button className="bg-white text-gray-800 font-bold rounded border-b-2 border-orange hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-3 px-6 inline-flex items-center">
-            <span className="mr-2"> Per iscriversi, compilare questo modulo</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-            </svg>
-          </button>
-          </Link>
+          
         </div>
       </div>
 

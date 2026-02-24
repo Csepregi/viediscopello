@@ -2,7 +2,7 @@ import DoveSiamo from "./doveSiamo";
 import ChiSiamo from "./chiSiamo";
 import CheFacciamo from "./cheFacciamo";
 import Footer from '../components/footer'
-
+import { Link } from "@remix-run/react";
 
 export default function Index() {
 
@@ -33,7 +33,7 @@ export default function Index() {
                         <li className="content__container__list__item xl:pl-3">rispetto</li>
                     </ul>
                 </span>
-                <p className="font-bold tracking-widest text-blue  text-4xl">...Immaginalo per un attimo!</p>
+                <p className="font-bold tracking-widest text-blue text-4xl">...Immaginalo per un attimo!</p>
             </div>
             <div className="w-full sm:w-1/2">
                 <img src="./logoscopello.png" alt="AWE.SOME header" />

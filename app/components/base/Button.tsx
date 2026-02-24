@@ -20,11 +20,23 @@ const Button = styled("button", {
   textAlign: "center",
   textDecoration: "none",
   border: "none",
+  borderRadius: "$3",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   "&:disabled": {
     pointerEvents: "none !important",
+    opacity: 0.7,
   },
   "&:focus-visible": {
     outline: "2px solid blue",
+    outlineOffset: "2px",
+  },
+  "&:hover": {
+    transform: "translateY(-2px)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
+  },
+  "&:active": {
+    transform: "translateY(0)",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
   variants: {
     appearance: {

@@ -16,8 +16,8 @@ FROM base as deps
 WORKDIR /myapp
 
 ADD package.json pnpm-lock.yaml .npmrc ./
-RUN pnpm install --frozen-lockfile --prod=false
 ADD prisma ./prisma
+RUN pnpm install --frozen-lockfile --prod=false
 RUN pnpm exec prisma generate
 
 # Setup production node_modules.
@@ -27,6 +27,7 @@ WORKDIR /myapp
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 
 ADD package.json pnpm-lock.yaml .npmrc ./
+COPY --from=deps /myapp/prisma /myapp/prisma
 RUN pnpm prune --prod
 
 # Build the app.

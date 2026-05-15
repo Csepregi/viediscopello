@@ -1,13 +1,6 @@
-import type { LoaderFunctionArgs } from 'react-router'
-import type { User } from '@prisma/client'
-import { redirect } from 'react-router'
 import { Outlet } from 'react-router'
 //import { authenticator } from '~/services/auth/config.server'
 import Header from '~/components/header'
-
-type LoaderData = {
-  user: User | null
-}
 
 // export async function loader({ request }: LoaderFunctionArgs) {
 //   const session = await authenticator.isAuthenticated(request)
@@ -19,7 +12,7 @@ type LoaderData = {
 //   return json<LoaderData>({ user: session })
 // }
 
-export default function Layout() {
+export default function Layout({ children }: { children?: React.ReactNode }) {
   // Check bellow info about why we are force casting <LoaderData>
   // https://github.com/remix-run/remix/issues/3931
   // const { user } = useLoaderData() as LoaderData
@@ -32,7 +25,7 @@ export default function Layout() {
       <Header/>
       {/* <Navigation user={user} /> */}
       {/* Outlet. */}
-      <Outlet />
+      {children ?? <Outlet />}
 
       {/* Footer. */}
     </div>

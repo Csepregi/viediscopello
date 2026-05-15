@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 export default function CheFacciamo() {
   const [flipped, setFlipped] = useState(Array(4).fill(false));
 
-  const handleFlip = (index) => {
+  const handleFlip = (index: number) => {
     setFlipped((prev) =>
       prev.map((state, i) => (i === index ? !state : state))
     );

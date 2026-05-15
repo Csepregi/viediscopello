@@ -1,4 +1,5 @@
-import type { PlanLimit, Price } from '@prisma/client'
+type PlanLimit = { maxItems: number }
+type Price = { amount: number }
 
 /**
  * Defines our plans IDs.

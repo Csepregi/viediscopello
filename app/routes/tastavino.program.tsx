@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function Program() {
   const [selectedDay, setSelectedDay] = useState("venerdi");
 
-  const handleButtonClick = (day) => {
+  const handleButtonClick = (day: string) => {
     setSelectedDay(day);
   };
 

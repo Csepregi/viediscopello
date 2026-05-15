@@ -1,5 +1,4 @@
-import { data, redirect } from "react-router";
-import { Form, Link, useSearchParams } from "react-router";
+import { data, redirect, Form, Link, useSearchParams } from "react-router";
 import { useRef, useEffect } from "react";
 import { safeRedirect } from "remix-utils/safe-redirect";
 import { getUserByEmail, createUser } from "~/models/user.server";

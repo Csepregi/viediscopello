@@ -1,21 +1,13 @@
-import type { Prisma, Plan } from '@prisma/client'
-import { db } from '~/utils/db.server'
+// Plan model is not part of the current Prisma schema.
+// This file is kept as a stub for routes that are currently disabled.
 
-export async function getPlanById(id: Plan['id'], include?: Prisma.PlanInclude) {
-  return db.plan.findUnique({
-    where: { id },
-    include: {
-      ...include,
-      prices: include?.prices || false,
-    },
-  })
+type Plan = { id: string; name: string }
+type PlanInclude = { prices?: boolean }
+
+export async function getPlanById(_id: Plan['id'], _include?: PlanInclude) {
+  return null
 }
 
-export async function getAllPlans(include?: Prisma.PlanInclude) {
-  return db.plan.findMany({
-    include: {
-      ...include,
-      prices: include?.prices || false,
-    },
-  })
+export async function getAllPlans(_include?: PlanInclude) {
+  return [] as Plan[]
 }

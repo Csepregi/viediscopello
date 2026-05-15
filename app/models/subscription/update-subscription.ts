@@ -1,22 +1,18 @@
-import type { Subscription } from '@prisma/client'
-import { db } from '~/utils/db.server'
+// Subscription model is not part of the current Prisma schema.
+// This file is kept as a stub for routes that are currently disabled.
+
+type Subscription = { id: string; userId: string }
 
 export async function updateSubscriptionById(
-  id: Subscription['id'],
-  subscription: Partial<Subscription>,
+  _id: Subscription['id'],
+  _subscription: Partial<Subscription>,
 ) {
-  return db.subscription.update({
-    where: { id },
-    data: { ...subscription },
-  })
+  return null
 }
 
 export async function updateSubscriptionByUserId(
-  userId: Subscription['userId'],
-  subscription: Partial<Subscription>,
+  _userId: Subscription['userId'],
+  _subscription: Partial<Subscription>,
 ) {
-  return db.subscription.update({
-    where: { userId },
-    data: { ...subscription },
-  })
+  return null
 }

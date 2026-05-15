@@ -7,6 +7,7 @@ export const action = async ({request}: Route.ActionArgs) => {
     const user = await requireUser(request);
     //create a customer portal session
     const url = await createBillingSession(user)
+    if (!url) throw new Error('Failed to create billing session.')
     // redirect to the customer portal
     return redirect(url)
 }

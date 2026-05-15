@@ -1,13 +1,13 @@
 import type {User } from "@prisma/client";
 import { prisma } from "~/db.server";
 import Stripe from "stripe";
-import { updateSubscriptionByUserId } from "./subscription/update-subscription";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "")
 
 export async function createBillingSession(
     user: User
 ) : Promise<string | null> {
+    if (!user.stripeCustomerId) throw new Error('Missing Stripe customer ID.')
     const session = await stripe.billingPortal.sessions.create({
         customer: user.stripeCustomerId,
         return_url: 'https://viediscopello.it/tastavino',
@@ -19,6 +19,7 @@ export async function createCheckoutSession(
     user: User,
     price: string,
 ) : Promise<string | null> {
+    if (!user.stripeCustomerId) throw new Error('Missing Stripe customer ID.')
     const session = await stripe.checkout.sessions.create({
         line_items: [
           {
@@ -122,10 +123,11 @@ export async function handleSubcriptionCreated(
 //   })
 // }
 
-export async function handleWebhook(request) {
+export async function handleWebhook(request: Request) {
     const secret = process.env.STRIPE_WEBHOOK_SECRET
-    const sig = request.headers.get('stripe-signature')
-    let event
+    if (!secret) throw new Error('Missing STRIPE_WEBHOOK_SECRET.')
+    const sig = request.headers.get('stripe-signature') ?? ''
+    let event: Stripe.Event
     const payload = await request.text()
 
     try {
@@ -136,16 +138,18 @@ export async function handleWebhook(request) {
         })
     }
 
-    if(event.type === 'checkout.session.completed' || event.type == 'checkout.session.async_payment_succeded') {
-        const session = event.data.object
-        if(session.payment_status == 'paid') {
-            const subscription = await stripe.subscriptions.retrieve(session.subscription)
-            await handleSubcriptionCreated(session.customer, subscription)
+    if(event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
+        const session = event.data.object as Stripe.Checkout.Session
+        if(session.payment_status == 'paid' && session.subscription) {
+            const subscriptionId = typeof session.subscription === 'string' ? session.subscription : session.subscription.id
+            const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id ?? null
+            const subscription = await stripe.subscriptions.retrieve(subscriptionId)
+            await handleSubcriptionCreated(customerId, subscription)
         }
     }
 
     if(event.type == 'customer.subscription.updated' || event.type == 'customer.subscription.deleted') {
-        const subscription = event.data.object
+        const subscription = event.data.object as Stripe.Subscription
         await updateSubscriptionStatus(subscription.metadata.userId, subscription.status)
     }
 
@@ -159,7 +163,7 @@ export async function updateSubscriptionStatus(
     await prisma.user.update({
         where: { id },
         data: {
-            stripeSubcriptionStatus: status
+            stripeSubscriptionStatus: status as string
         }
     })
 }

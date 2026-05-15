@@ -1,8 +1,6 @@
-import type { Subscription } from '@prisma/client'
-import { db } from '~/utils/db.server'
+// Subscription model is not part of the current Prisma schema.
+// This file is kept as a stub for routes that are currently disabled.
 
-export async function deleteSubscriptionById(id: Subscription['id']) {
-  return db.subscription.delete({
-    where: { id },
-  })
+export async function deleteSubscriptionById(_id: string) {
+  return null
 }

@@ -1,8 +1,8 @@
-import type { Plan } from '@prisma/client'
-import { db } from '~/utils/db.server'
+// Plan model is not part of the current Prisma schema.
+// This file is kept as a stub for routes that are currently disabled.
 
-export async function createPlan(plan: Omit<Plan, 'createdAt' | 'updatedAt'>) {
-  return db.plan.create({
-    data: { ...plan },
-  })
+type Plan = { id: string; name: string; createdAt?: Date; updatedAt?: Date }
+
+export async function createPlan(_plan: Omit<Plan, 'createdAt' | 'updatedAt'>) {
+  return null
 }

@@ -1,5 +1,4 @@
-import { data, redirect } from "react-router";
-import { Form, Link, useSearchParams } from "react-router";
+import { data, redirect, Form, Link, useSearchParams } from "react-router";
 import { useRef, useEffect } from "react";
 import { safeRedirect } from "remix-utils/safe-redirect";
 import { verifyLogin } from "~/models/user.server";
@@ -61,7 +60,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 export const meta: Route.MetaFunction = () => [{ title: "Login" }];
 export default function LoginPage({ actionData }: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo");
+  const redirectTo = searchParams.get("redirectTo") ?? undefined;
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 

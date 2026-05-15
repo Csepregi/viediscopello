@@ -13,10 +13,10 @@ export async function getUserByEmail(email: User['email']) {
   })
 }
 
-export async function getUserByCustomerId(customerId: User['customerId']) {
+export async function getUserByCustomerId(customerId: User['stripeCustomerId']) {
   if (!customerId) throw new Error('Missing required parameters to retrieve User.')
 
-  return db.user.findUnique({
-    where: { customerId },
+  return db.user.findFirst({
+    where: { stripeCustomerId: customerId },
   })
 }

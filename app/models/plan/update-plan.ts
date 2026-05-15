@@ -1,9 +1,8 @@
-import type { Plan } from '@prisma/client'
-import { db } from '~/utils/db.server'
+// Plan model is not part of the current Prisma schema.
+// This file is kept as a stub for routes that are currently disabled.
 
-export async function updatePlanById(id: Plan['id'], plan: Partial<Plan>) {
-  return db.plan.update({
-    where: { id },
-    data: { ...plan },
-  })
+type Plan = { id: string; name: string }
+
+export async function updatePlanById(_id: Plan['id'], _plan: Partial<Plan>) {
+  return null
 }

@@ -1,5 +1,5 @@
-import { data } from "react-router";
 import {
+  data,
   Links,
   Meta,
   Outlet,

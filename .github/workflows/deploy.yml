@@ -56,51 +56,51 @@ jobs:
       - name: 🔎 Type check
         run: npm run typecheck --if-present
 
-  playwright:
-    name: 🎭 Playwright
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v4
-        with:
-          cache: npm
-          cache-dependency-path: ./package.json
-          node-version: 18
-
-      - name: 📥 Install deps
-        run: npm install
-
-      - name: 🏄 Copy test env vars
-        run: cp .env.example .env
-
-      # - name: Install Playwright Browsers
-      #   run: npx playwright install --with-deps
-
-      # - name: 🛠 Setup Database
-      #   run: npx prisma migrate reset --force --skip-seed
-
-      # - name: ⚙️ Build
-      #   run: npm run build
-
-      # - name: Run Playwright Tests
-      #   run: npx playwright test
-
-      # - name: Upload Report
-      #   uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: playwright-report
-      #     path: playwright-report/
-      #     retention-days: 30
+  # playwright:
+  #   name: 🎭 Playwright
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 60
+  #   steps:
+  #     - name: ⬇️ Checkout repo
+  #       uses: actions/checkout@v4
+  #
+  #     - name: ⎔ Setup node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         cache: npm
+  #         cache-dependency-path: ./package.json
+  #         node-version: 18
+  #
+  #     - name: 📥 Install deps
+  #       run: npm install
+  #
+  #     - name: 🏄 Copy test env vars
+  #       run: cp .env.example .env
+  #
+  #     # - name: Install Playwright Browsers
+  #     #   run: npx playwright install --with-deps
+  #
+  #     # - name: 🛠 Setup Database
+  #     #   run: npx prisma migrate reset --force --skip-seed
+  #
+  #     # - name: ⚙️ Build
+  #     #   run: npm run build
+  #
+  #     # - name: Run Playwright Tests
+  #     #   run: npx playwright test
+  #
+  #     # - name: Upload Report
+  #     #   uses: actions/upload-artifact@v3
+  #     #   if: always()
+  #     #   with:
+  #     #     name: playwright-report
+  #     #     path: playwright-report/
+  #     #     retention-days: 30
 
   deploy:
     name: 🚀 Deploy
     runs-on: ubuntu-latest
-    needs: [lint, typecheck, playwright]
+    needs: [lint, typecheck]
     # Only build / deploy main/dev branch on pushes.
     if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
 

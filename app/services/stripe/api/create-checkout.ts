@@ -1,12 +1,11 @@
 import type { Stripe } from 'stripe'
-import type { User, Price } from '@prisma/client'
 
 import { stripe } from '~/services/stripe/config.server'
 import { HOST_URL } from '~/utils/http'
 
 export async function createStripeCheckoutSession(
-  customerId: User['customerId'],
-  priceId: Price['id'],
+  customerId: string | null,
+  priceId: string,
   params?: Stripe.Checkout.SessionCreateParams,
 ) {
   if (!customerId || !priceId)

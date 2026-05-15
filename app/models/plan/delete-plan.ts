@@ -1,8 +1,6 @@
-import type { Plan } from '@prisma/client'
-import { db } from '~/utils/db.server'
+// Plan model is not part of the current Prisma schema.
+// This file is kept as a stub for routes that are currently disabled.
 
-export async function deletePlanById(id: Plan['id']) {
-  return db.plan.delete({
-    where: { id },
-  })
+export async function deletePlanById(_id: string) {
+  return null
 }
